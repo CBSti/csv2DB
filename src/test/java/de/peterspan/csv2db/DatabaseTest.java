@@ -2,6 +2,7 @@ package de.peterspan.csv2db;
 
 import javax.annotation.Resource;
 
+import org.hibernate.SessionFactory;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.test.context.ContextConfiguration;
@@ -16,9 +17,14 @@ public class DatabaseTest {
 	@Resource
 	LocationDAOImpl locationDao;
 	
+	@Resource
+	SessionFactory sessionFactory;
+	
 	@Test
     public void testCreateData() {
 		System.out.println("Hello World");
 		System.out.println("LocationDAOImpl "+locationDao);
+		System.out.println("SessionFactory: "+sessionFactory);
+		
     }
 }
