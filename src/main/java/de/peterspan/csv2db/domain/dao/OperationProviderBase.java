@@ -9,7 +9,7 @@ import org.hibernate.persister.entity.AbstractEntityPersister;
 
 import de.peterspan.csv2db.domain.entities.DataSet;
 import de.peterspan.csv2db.domain.entities.Location;
-import de.peterspan.csv2db.domain.entities.Values;
+import de.peterspan.csv2db.domain.entities.MeasurementValues;
 
 /**
  * This class provides all default operations that are derived from the HEDL entity model.
@@ -22,7 +22,7 @@ public abstract class OperationProviderBase implements IDBOperationsBase {
 	
 	private LocationDAO locationDAO = new LocationDAO();
 	private DataSetDAO dataSetDAO = new DataSetDAO();
-	private ValuesDAO valuesDAO = new ValuesDAO();
+	private MeasurementValuesDAO measurementValuesDAO = new MeasurementValuesDAO();
 
 	public OperationProviderBase(Session session) {
 		this.session = session;
@@ -107,9 +107,9 @@ public abstract class OperationProviderBase implements IDBOperationsBase {
 		return entities;
 	}
 		
-	/** Returns the DataSets with the given values. */
-	public List<DataSet> getDataSetsByValues(Values values) {
-		List<DataSet> entities = dataSetDAO.getByValues(session, values);
+	/** Returns the DataSets with the given measurementValues. */
+	public List<DataSet> getDataSetsByMeasurementValues(MeasurementValues measurementValues) {
+		List<DataSet> entities = dataSetDAO.getByMeasurementValues(session, measurementValues);
 		return entities;
 	}
 		
@@ -154,8 +154,8 @@ public abstract class OperationProviderBase implements IDBOperationsBase {
 	/**
 	 * Searches for entities of type DataSet.
 	 */
-	public List<DataSet> searchDataSetWithValues(Values values, String _searchString, int _maxResults) {
-		return dataSetDAO.searchWithValues(session, values, _searchString, _maxResults);
+	public List<DataSet> searchDataSetWithMeasurementValues(MeasurementValues measurementValues, String _searchString, int _maxResults) {
+		return dataSetDAO.searchWithMeasurementValues(session, measurementValues, _searchString, _maxResults);
 	}
 	
 	/**
@@ -197,47 +197,47 @@ public abstract class OperationProviderBase implements IDBOperationsBase {
 	}
 	
 	/** 
-	 * Creates an instance of type Values using all read-only and all non-null properties.
+	 * Creates an instance of type MeasurementValues using all read-only and all non-null properties.
 	 */
-	public Values createValues() {
-		return valuesDAO.create(session);
+	public MeasurementValues createMeasurementValues() {
+		return measurementValuesDAO.create(session);
 	}
 	
 	/**
-	 * Returns the Values with the given id.
+	 * Returns the MeasurementValues with the given id.
 	 */
-	public Values getValues(int id) {
-		Values entity = valuesDAO.get(session, id);
+	public MeasurementValues getMeasurementValues(int id) {
+		MeasurementValues entity = measurementValuesDAO.get(session, id);
 		return entity;
 	}
 	
 	/**
-	 * Returns all entities of type Values.
+	 * Returns all entities of type MeasurementValues.
 	 */
-	public List<Values> getAllValuess() {
-		final List<Values> entities = valuesDAO.getAll(session);
+	public List<MeasurementValues> getAllMeasurementValuess() {
+		final List<MeasurementValues> entities = measurementValuesDAO.getAll(session);
 		return entities;
 	}
 	
 	/**
-	 * Searches for entities of type Values.
+	 * Searches for entities of type MeasurementValues.
 	 */
-	public List<Values> searchValuess(String _searchString, int _maxResults) {
-		return valuesDAO.search(session, _searchString, _maxResults);
+	public List<MeasurementValues> searchMeasurementValuess(String _searchString, int _maxResults) {
+		return measurementValuesDAO.search(session, _searchString, _maxResults);
 	}
 	
 	/**
-	 * Deletes a Values.
+	 * Deletes a MeasurementValues.
 	 */
-	public void delete(Values entity) {
-		valuesDAO.delete(session, entity);
+	public void delete(MeasurementValues entity) {
+		measurementValuesDAO.delete(session, entity);
 	}
 	
 		/**
-	 * Counts the number of Values entities.
+	 * Counts the number of MeasurementValues entities.
 	 */
-	public int countValuess() {
-		return valuesDAO.count(session);
+	public int countMeasurementValuess() {
+		return measurementValuesDAO.count(session);
 	}
 	
 	/**

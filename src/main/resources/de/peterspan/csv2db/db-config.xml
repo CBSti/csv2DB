@@ -49,7 +49,7 @@
 		</property>
 		<property
 			name="packagesToScan"
-			value="de.peterspan.domain"/>
+			value="de.peterspan.csv2db"/>
 		<property name="hibernateProperties">
 			<props>
 				<prop key="hibernate.dialect">${jdbc.hibernate.dialect}</prop>

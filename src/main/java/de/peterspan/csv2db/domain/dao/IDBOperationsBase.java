@@ -4,7 +4,7 @@ import java.util.List;
 
 import de.peterspan.csv2db.domain.entities.DataSet;
 import de.peterspan.csv2db.domain.entities.Location;
-import de.peterspan.csv2db.domain.entities.Values;
+import de.peterspan.csv2db.domain.entities.MeasurementValues;
 
 // this class is generated. any change will be overridden.
 public interface IDBOperationsBase {
@@ -60,9 +60,9 @@ public interface IDBOperationsBase {
 	public List<DataSet> getDataSetsByLocation(Location location);
 	
 	/**
-	 * Returns the DataSets with the given values.
+	 * Returns the DataSets with the given measurementValues.
 	 */
-	public List<DataSet> getDataSetsByValues(Values values);
+	public List<DataSet> getDataSetsByMeasurementValues(MeasurementValues measurementValues);
 	
 	/**
 	 * Returns all DataSets where acquisitionDate is set to a value before '_maxDate'.
@@ -92,7 +92,7 @@ public interface IDBOperationsBase {
 	/**
 	 * Searches for entities of type DataSet.
 	 */
-	public List<DataSet> searchDataSetWithValues(final Values values, String _searchString, int _maxResults);
+	public List<DataSet> searchDataSetWithMeasurementValues(final MeasurementValues measurementValues, String _searchString, int _maxResults);
 	
 	/**
 	 * Deletes a DataSet.
@@ -115,34 +115,34 @@ public interface IDBOperationsBase {
 	public int countDataSets();
 	
 	/**
-	 * Creates a new Values using all read-only and all non-null properties.
+	 * Creates a new MeasurementValues using all read-only and all non-null properties.
 	 */
-	public Values createValues();
+	public MeasurementValues createMeasurementValues();
 	
 	/**
-	 * Returns the Values with the given id.
+	 * Returns the MeasurementValues with the given id.
 	 */
-	public Values getValues(int id);
+	public MeasurementValues getMeasurementValues(int id);
 		
 	/**
-	 * Returns all entities of type Values.
+	 * Returns all entities of type MeasurementValues.
 	 */
-	public List<Values> getAllValuess();
+	public List<MeasurementValues> getAllMeasurementValuess();
 		
 	/**
-	 * Searches for entities of type Values.
+	 * Searches for entities of type MeasurementValues.
 	 */
-	public List<Values> searchValuess(String _searchString, int _maxResults);
+	public List<MeasurementValues> searchMeasurementValuess(String _searchString, int _maxResults);
 	
 	/**
-	 * Deletes a Values.
+	 * Deletes a MeasurementValues.
 	 */
-	public void delete(Values entity);
+	public void delete(MeasurementValues entity);
 	
 	/**
-	 * Counts the number of Values entities.
+	 * Counts the number of MeasurementValues entities.
 	 */
-	public int countValuess();
+	public int countMeasurementValuess();
 	
 	
 	public void update(Object entity);

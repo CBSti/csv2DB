@@ -11,26 +11,26 @@ import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.Parameter;
 
 @Entity
-@Table(name = "values"
+@Table(name = "measurementvalues"
 )
 /*
- * This class is generated from the entity 'Values' defined in the HEDL model.
+ * This class is generated from the entity 'MeasurementValues' defined in the HEDL model.
  * Note: Any change made to this class will be overridden.
  */
-public class Values {
+public class MeasurementValues {
 	
-	@GenericGenerator(name="ValuesIdGenerator", strategy="org.hibernate.id.MultipleHiLoPerTableGenerator",
+	@GenericGenerator(name="MeasurementValuesIdGenerator", strategy="org.hibernate.id.MultipleHiLoPerTableGenerator",
 	  parameters = {
 	    @Parameter(name="table", value="IdentityGenerator"),
 	    @Parameter(name="primary_key_column", value="sequence_name"),
-	    @Parameter(name="primary_key_value", value="Values"),
+	    @Parameter(name="primary_key_value", value="MeasurementValues"),
 	    @Parameter(name="value_column", value="next_hi_value"),
 	    @Parameter(name="primary_key_length", value="100"),
 	    @Parameter(name="max_lo", value="1000")
 	  }
 	)
 	@Id 
-	@GeneratedValue(strategy=GenerationType.TABLE, generator="ValuesIdGenerator")
+	@GeneratedValue(strategy=GenerationType.TABLE, generator="MeasurementValuesIdGenerator")
 	private int id;
 
 	@Column(name="numberofsprouds")
@@ -114,7 +114,7 @@ public class Values {
 	/**
 	 * Default constructor. Only used by Hibernate.
 	 */
-	public Values() {
+	public MeasurementValues() {
 		super();
 	}
 

@@ -12,11 +12,11 @@ DataSet {
 	Int treeType;
 	Int repetition;
 	nullable Location location; 
-	nullable Values values;
+	nullable MeasurementValues measurementValues;
 	nullable LongString remark;
 }
 
-Values{
+MeasurementValues{
 	nullable Int numberOfSprouds;
 	nullable Double bhd_1;
 	nullable Double d_01_1;

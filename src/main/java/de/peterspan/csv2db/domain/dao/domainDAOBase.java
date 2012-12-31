@@ -19,7 +19,7 @@ import de.peterspan.csv2db.domain.custom.IDBOperations;
 import de.peterspan.csv2db.domain.custom.OperationProvider;
 import de.peterspan.csv2db.domain.entities.DataSet;
 import de.peterspan.csv2db.domain.entities.Location;
-import de.peterspan.csv2db.domain.entities.Values;
+import de.peterspan.csv2db.domain.entities.MeasurementValues;
 
 // this class is generated. any change will be overridden.
 public abstract class domainDAOBase implements IDBOperationsBase {
@@ -51,7 +51,7 @@ public abstract class domainDAOBase implements IDBOperationsBase {
 		Configuration configuration = new Configuration();
 		configuration = configuration.addAnnotatedClass(Location.class);
 		configuration = configuration.addAnnotatedClass(DataSet.class);
-		configuration = configuration.addAnnotatedClass(Values.class);
+		configuration = configuration.addAnnotatedClass(MeasurementValues.class);
 		if (contextClass != null) {
 			Properties properties = new Properties();
 			try {
@@ -291,14 +291,14 @@ public abstract class domainDAOBase implements IDBOperationsBase {
 	}
 	
 	/**
-	 * Returns the DataSets with the given values.
+	 * Returns the DataSets with the given measurementValues.
 	 */
-	public List<DataSet> getDataSetsByValues(final Values values) {
+	public List<DataSet> getDataSetsByMeasurementValues(final MeasurementValues measurementValues) {
 		final List<DataSet> entities = new ArrayList<DataSet>();
 		executeInTransaction(new ICommand() {
 			
 			public void execute(IDBOperations operations) {
-				entities.addAll(operations.getDataSetsByValues(values));
+				entities.addAll(operations.getDataSetsByMeasurementValues(measurementValues));
 			}
 		});
 		return entities;
@@ -377,12 +377,12 @@ public abstract class domainDAOBase implements IDBOperationsBase {
 	/**
 	 * Searches for entities of type DataSet.
 	 */
-	public List<DataSet> searchDataSetWithValues(final Values values, final String _searchString, final int _maxResults) {
+	public List<DataSet> searchDataSetWithMeasurementValues(final MeasurementValues measurementValues, final String _searchString, final int _maxResults) {
 		final List<DataSet> entities = new ArrayList<DataSet>();
 		executeInTransaction(new ICommand() {
 			
 			public void execute(IDBOperations operations) {
-				entities.addAll(operations.searchDataSetWithValues(values, _searchString, _maxResults));
+				entities.addAll(operations.searchDataSetWithMeasurementValues(measurementValues, _searchString, _maxResults));
 			}
 		});
 		return entities;
@@ -439,65 +439,65 @@ public abstract class domainDAOBase implements IDBOperationsBase {
 	}
 	
 	/**
-	 * Creates a new Values using all read-only and all non-null properties.
+	 * Creates a new MeasurementValues using all read-only and all non-null properties.
 	 */
-	public Values createValues() {
-		final Values[] entity = new Values[1];
+	public MeasurementValues createMeasurementValues() {
+		final MeasurementValues[] entity = new MeasurementValues[1];
 		executeInTransaction(new ICommand() {
 			
 			public void execute(IDBOperations operations) {
-				entity[0] = operations.createValues();
+				entity[0] = operations.createMeasurementValues();
 			}
 		});
 		return entity[0];
 	}
 	
 	/**
-	 * Returns the Values with the given id.
+	 * Returns the MeasurementValues with the given id.
 	 */
-	public Values getValues(final int id) {
-		final Values[] entity = new Values[1];
+	public MeasurementValues getMeasurementValues(final int id) {
+		final MeasurementValues[] entity = new MeasurementValues[1];
 		executeInTransaction(new ICommand() {
 			
 			public void execute(IDBOperations operations) {
-				entity[0] = operations.getValues(id);
+				entity[0] = operations.getMeasurementValues(id);
 			}
 		});
 		return entity[0];
 	}
 	
 	/**
-	 * Returns all entities of type Values.
+	 * Returns all entities of type MeasurementValues.
 	 */
-	public List<Values> getAllValuess() {
-		final List<Values> entities = new ArrayList<Values>();
+	public List<MeasurementValues> getAllMeasurementValuess() {
+		final List<MeasurementValues> entities = new ArrayList<MeasurementValues>();
 		executeInTransaction(new ICommand() {
 			
 			public void execute(IDBOperations operations) {
-				entities.addAll(operations.getAllValuess());
+				entities.addAll(operations.getAllMeasurementValuess());
 			}
 		});
 		return entities;
 	}
 	
 	/**
-	 * Searches for entities of type Values.
+	 * Searches for entities of type MeasurementValues.
 	 */
-	public List<Values> searchValuess(final String _searchString, final int _maxResults) {
-		final List<Values> entities = new ArrayList<Values>();
+	public List<MeasurementValues> searchMeasurementValuess(final String _searchString, final int _maxResults) {
+		final List<MeasurementValues> entities = new ArrayList<MeasurementValues>();
 		executeInTransaction(new ICommand() {
 			
 			public void execute(IDBOperations operations) {
-				entities.addAll(operations.searchValuess(_searchString, _maxResults));
+				entities.addAll(operations.searchMeasurementValuess(_searchString, _maxResults));
 			}
 		});
 		return entities;
 	}
 	
 	/**
-	 * Deletes a Values.
+	 * Deletes a MeasurementValues.
 	 */
-	public void delete(final Values entity) {
+	public void delete(final MeasurementValues entity) {
 		executeInTransaction(new ICommand() {
 			
 			public void execute(IDBOperations operations) {
@@ -507,14 +507,14 @@ public abstract class domainDAOBase implements IDBOperationsBase {
 	}
 	
 	/**
-	 * Counts the number of Values entities.
+	 * Counts the number of MeasurementValues entities.
 	 */
-	public int countValuess() {
+	public int countMeasurementValuess() {
 		final int[] count = new int[1];
 		executeInTransaction(new ICommand() {
 			
 			public void execute(IDBOperations operations) {
-				count[0] = operations.countValuess();
+				count[0] = operations.countMeasurementValuess();
 			}
 		});
 		return count[0];

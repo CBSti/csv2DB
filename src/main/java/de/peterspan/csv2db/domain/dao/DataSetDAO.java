@@ -10,7 +10,7 @@ import org.hibernate.criterion.Restrictions;
 
 import de.peterspan.csv2db.domain.entities.DataSet;
 import de.peterspan.csv2db.domain.entities.Location;
-import de.peterspan.csv2db.domain.entities.Values;
+import de.peterspan.csv2db.domain.entities.MeasurementValues;
 
 /**
  * This class provides all default operations that are derived from the HEDL entity model
@@ -27,7 +27,7 @@ public class DataSetDAO {
 	public final static String FIELD__TREETYPE = getField(DataSet.class, "treeType");
 	public final static String FIELD__REPETITION = getField(DataSet.class, "repetition");
 	public final static String FIELD__LOCATION = getField(DataSet.class, "location");
-	public final static String FIELD__VALUES = getField(DataSet.class, "values");
+	public final static String FIELD__MEASUREMENTVALUES = getField(DataSet.class, "measurementValues");
 	public final static String FIELD__REMARK = getField(DataSet.class, "remark");
 	
 	/**
@@ -59,11 +59,11 @@ public class DataSetDAO {
 	}
 	
 	/**
-	 * Returns the DataSets with the given values.
+	 * Returns the DataSets with the given measurementValues.
 	 */
-	public List<DataSet> getByValues(Session session, Values values) {
+	public List<DataSet> getByMeasurementValues(Session session, MeasurementValues measurementValues) {
 		Criteria criteria = session.createCriteria(DataSet.class);
-		criteria = criteria.add(Restrictions.eq(FIELD__VALUES, values));
+		criteria = criteria.add(Restrictions.eq(FIELD__MEASUREMENTVALUES, measurementValues));
 		@SuppressWarnings("unchecked")
 		List<DataSet> list = (List<DataSet>) criteria.list();
 		return list;
@@ -136,10 +136,10 @@ public class DataSetDAO {
 	/**
 	 * Searches for entities of type DataSet.
 	 */
-	public List<DataSet> searchWithValues(Session _session, Values values, String _searchString, int _maxResults) {
+	public List<DataSet> searchWithMeasurementValues(Session _session, MeasurementValues measurementValues, String _searchString, int _maxResults) {
 		Criteria criteria = _session.createCriteria(DataSet.class);
 		// restrict by the value of the unique property
-		criteria = criteria.add(Restrictions.eq(FIELD__VALUES, values));
+		criteria = criteria.add(Restrictions.eq(FIELD__MEASUREMENTVALUES, measurementValues));
 		Disjunction disjunction = Restrictions.disjunction();
 		disjunction.add(Restrictions.like(FIELD__REMARK, _searchString.trim(), MatchMode.ANYWHERE));
 		criteria = criteria.add(disjunction);

@@ -59,8 +59,8 @@ public class DataSet {
 	private Location location;
 	
 	@OneToOne(cascade={CascadeType.ALL})
-	@JoinColumn(name="values", nullable=true)
-	private Values values;
+	@JoinColumn(name="measurementvalues", nullable=true)
+	private MeasurementValues measurementValues;
 	
 	@Column(name="remark", length=100000)
 	private java.lang.String remark;
@@ -186,17 +186,17 @@ public class DataSet {
 	}
 	
 	/**
-	 * Returns the value of property 'values'.
+	 * Returns the value of property 'measurementValues'.
 	 */
-	public Values getValues() {
-		return values;
+	public MeasurementValues getMeasurementValues() {
+		return measurementValues;
 	}
 	
 	/**
-	 * Sets the value of property 'values'.
+	 * Sets the value of property 'measurementValues'.
 	 */
-	public void setValues(Values newValue) {
-		this.values = newValue;
+	public void setMeasurementValues(MeasurementValues newValue) {
+		this.measurementValues = newValue;
 	}
 	
 	/**
