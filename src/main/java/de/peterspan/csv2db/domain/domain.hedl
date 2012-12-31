@@ -1,0 +1,60 @@
+Location{
+	Double longitude;
+	Double latitude;
+	String name;
+	unique Int locationNumber;
+}
+
+DataSet {
+	Date acquisitionDate;
+	Int standingYear;
+	Int rotation;
+	Int treeType;
+	Int repetition;
+	nullable Location location; 
+	nullable Values values;
+	nullable LongString remark;
+}
+
+Values{
+	nullable Int numberOfSprouds;
+	nullable Double bhd_1;
+	nullable Double d_01_1;
+	
+	nullable Double bhd_2;
+	nullable Double d_01_2;
+	
+	nullable Double bhd_3;
+	nullable Double d_01_3;
+	
+	nullable Double bhd_4;
+	nullable Double d_01_4;
+	
+	nullable Double bhd_5;
+	nullable Double d_01_5;
+	
+	nullable Double bhd_6;
+	nullable Double d_01_6;
+	
+	nullable Double bhd_7;
+	nullable Double d_01_7;
+	
+	nullable Double bhd_8;
+	nullable Double d_01_8;
+	
+	nullable Double height;
+	
+	nullable Double l_1;
+	nullable Double l_2;
+	nullable Double l_3;
+	nullable Double l_4;
+	nullable Double l_5;
+	nullable Double l_6;
+	nullable Double l_7;
+	nullable Double l_8;
+	
+	
+}
+
+
+
