@@ -24,7 +24,7 @@ public class AboutDialog extends JDialog {
 		DefaultFormBuilder builder = new DefaultFormBuilder(layout);
 		builder.setDefaultDialogBorder();
 
-//		builder.append(new AboutPanel(this));
+		builder.append(new AboutPanel(this));
 		JPanel innerPanel = builder.getPanel();
 		add(innerPanel, BorderLayout.CENTER);
 
