@@ -18,18 +18,125 @@
  */
 package de.peterspan.csv2db.ui;
 
+import java.awt.BorderLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.beans.PropertyChangeEvent;
+import java.beans.PropertyChangeListener;
+
+import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+import javax.swing.JProgressBar;
+
+import com.jgoodies.forms.builder.ButtonBarBuilder;
+import com.jgoodies.forms.builder.DefaultFormBuilder;
+import com.jgoodies.forms.layout.FormLayout;
+import com.jidesoft.swing.JideBorderLayout;
+
+import de.peterspan.csv2db.converter.Converter;
+import de.peterspan.csv2db.ui.res.Messages;
 
 public class MainPanel extends JPanel {
 
 	private static final long serialVersionUID = 7769482649486370036L;
-	
+
 	JFrame parent;
-	
+	FileSelectionPanel fileSelectionPanel;
+	JButton readInputButton;
+	JProgressBar progressBar;
+
 	public MainPanel(JFrame parent) {
 		super();
 		this.parent = parent;
-//		initialize();
+		initialize();
+	}
+
+	private void initialize() {
+		setLayout(new JideBorderLayout());
+
+		add(getFileSelectionPanel(), JideBorderLayout.NORTH);
+
+		FormLayout layout = new FormLayout("fill:pref:grow, 4dlu, right:pref"); //$NON-NLS-1$
+		DefaultFormBuilder builder = new DefaultFormBuilder(layout);
+
+		ButtonBarBuilder buttonBarBuilder = new ButtonBarBuilder();
+		buttonBarBuilder.addGlue();
+		buttonBarBuilder.addButton(getReadInputButton());
+
+		builder.append(getProgressBar());
+		builder.append(buttonBarBuilder.build());
+		add(builder.getPanel(), BorderLayout.SOUTH);
+	}
+
+	private JButton getReadInputButton() {
+		if (readInputButton == null) {
+			readInputButton = new JButton();
+			readInputButton.setText(Messages.getString("MainPanel.1")); //$NON-NLS-1$
+
+			readInputButton.setEnabled(false);
+			
+			readInputButton.addActionListener(new ActionListener() {
+
+				@Override
+				public void actionPerformed(ActionEvent arg0) {
+					startConvert();
+				}
+			});
+		}
+		return readInputButton;
+	}
+
+	private FileSelectionPanel getFileSelectionPanel() {
+		if (fileSelectionPanel == null) {
+			fileSelectionPanel = new FileSelectionPanel(parent);
+
+			fileSelectionPanel
+					.addPropertyChangeListener(new PropertyChangeListener() {
+
+						@Override
+						public void propertyChange(PropertyChangeEvent evt) {
+							if ("csvFileSelected".equals(evt.getPropertyName())) {
+								getReadInputButton().setEnabled(true);
+							}
+
+						}
+					});
+		}
+		return fileSelectionPanel;
+	}
+
+	private JProgressBar getProgressBar() {
+		if (progressBar == null) {
+			progressBar = new JProgressBar(0, 100);
+			progressBar.setStringPainted(true);
+			progressBar.setVisible(false);
+		}
+		return progressBar;
+	}
+
+	private void startConvert() {
+		progressBar.setVisible(true);
+
+		Converter converter = new Converter(getFileSelectionPanel().getInputCsvFile());
+
+		converter.addPropertyChangeListener(new PropertyChangeListener() {
+
+			@Override
+			public void propertyChange(PropertyChangeEvent evt) {
+				if ("progress".equals(evt.getPropertyName())) {
+					getProgressBar().setValue((Integer) evt.getNewValue());
+					getProgressBar().setString(
+							(Integer) evt.getNewValue() + "%");
+				}
+
+				if ("done".equals(evt.getPropertyName())) {
+					System.out.println("Done");
+					progressBar.setVisible(false);
+				}
+			}
+		});
+
+		converter.execute();
 	}
 }

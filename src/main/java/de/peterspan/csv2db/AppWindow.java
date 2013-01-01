@@ -27,6 +27,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.net.URISyntaxException;
+import java.net.URL;
 import java.nio.channels.OverlappingFileLockException;
 
 import javax.swing.JFrame;
@@ -40,8 +41,14 @@ import javax.swing.UnsupportedLookAndFeelException;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.hibernate.SessionFactory;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
+import org.springframework.stereotype.Component;
+import org.springframework.test.context.ContextConfiguration;
 
 import com.jgoodies.forms.builder.DefaultFormBuilder;
+import com.jgoodies.forms.builder.PanelBuilder;
 import com.jgoodies.forms.layout.FormLayout;
 import com.jidesoft.swing.JideBorderLayout;
 
@@ -52,7 +59,6 @@ import de.peterspan.csv2db.ui.res.Messages;
 import de.peterspan.csv2db.util.DialogUtil;
 import de.peterspan.csv2db.util.SingleInstance;
 
-
 public class AppWindow {
 
 	private final Log log = LogFactory.getLog(AppWindow.class);
@@ -62,7 +68,6 @@ public class AppWindow {
 	private MainPanel mainPanel;
 	
 	public static void main(String[] args) {
-		
 		setLookAndFeel();
 		EventQueue.invokeLater(new Runnable() {
 			@Override
@@ -199,6 +204,7 @@ public class AppWindow {
 	}
 	
 	private void createContent() {
+		PanelBuilder.setOpaqueDefault(true);
 		frame.getContentPane().setLayout(new JideBorderLayout());
 
 		FormLayout layout = new FormLayout("fill:pref:grow"); //$NON-NLS-1$
