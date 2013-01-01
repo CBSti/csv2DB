@@ -1,6 +1,13 @@
 csv2DB
 ======
 
+Requirements
+============
+
+* [HEDL - Hibernate Entity Description Language](http://www.hibernate-dsl.org/index.php/HEDL)
+* [Maven](http://www.apache.maven.org)
+* MySql Database
+
 Table Creation
 ==============
 
