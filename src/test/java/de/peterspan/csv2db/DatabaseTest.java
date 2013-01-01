@@ -41,27 +41,27 @@ public class DatabaseTest {
 		System.out.println("App COntext "+applicationContext);
 		System.out.println("dataSource "+dataSource);
 		
-		try {
-			Connection con = dataSource.getConnection();
-			System.out.println("Connection "+con);
-			
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		
-		Session session = sessionFactory.openSession();
-		System.out.println("Session: "+session);
-//		if(sessionFactory.getCurrentSession() == null){
-//			session = sessionFactory.openSession();
+//		try {
+//			Connection con = dataSource.getConnection();
+//			System.out.println("Connection "+con);
+//			
+//		} catch (SQLException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
 //		}
-		
-		
-		locationDao.create(session, 1.0, 2.0, "ABC-2", 1);
 //		
-		int count = locationDao.count(session);
+//		Session session = sessionFactory.openSession();
+//		System.out.println("Session: "+session);
+////		if(sessionFactory.getCurrentSession() == null){
+////			session = sessionFactory.openSession();
+////		}
 //		
-		System.out.println("Count "+count);
+//		
+//		locationDao.create(session, 1.0, 2.0, "ABC-2", 1);
+////		
+//		int count = locationDao.count(session);
+////		
+//		System.out.println("Count "+count);
 		
     }
 }

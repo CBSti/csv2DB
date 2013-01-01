@@ -33,7 +33,7 @@
 						<manifest>
 							<addClasspath>true</addClasspath>
 							<classpathPrefix>lib/</classpathPrefix>
-							<mainClass>de.peterspan.csv2db.Main</mainClass>
+							<mainClass>de.peterspan.csv2db.AppWindow</mainClass>
 						</manifest>
 					</archive>
 				</configuration>
