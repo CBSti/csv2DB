@@ -81,6 +81,11 @@ CREATE TABLE `measurementvalues` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8
 ```
 
+Acknowledgment
+==============
+
+* [Plant Evaluation Tool](http://code.google.com/p/plant-evaluation/)
+
 License
 ========
 
