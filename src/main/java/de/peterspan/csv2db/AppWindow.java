@@ -88,7 +88,6 @@ public class AppWindow {
 	}
 	
 	private void initialize() {
-		log.info("Plant Evaluator started");
 		frame = new JFrame();
 
 		frame.setIconImage(Icons.IC_APPLICATION_X_LARGE.getImage());
@@ -140,20 +139,6 @@ public class AppWindow {
 			}
 		});
 		mnEdit.add(mntmOptions);
-
-		JMenu mnTools = new JMenu(Messages.getString("AppWindow.mnTools.text")); //$NON-NLS-1$
-		menuBar.add(mnTools);
-
-		JMenuItem mntmPostprocessing = new JMenuItem(Messages.getString("AppWindow.mntmPostprocessing.text")); //$NON-NLS-1$
-		mntmPostprocessing.addActionListener(new ActionListener() {
-
-			@Override
-			public void actionPerformed(ActionEvent arg0) {
-				// TODO Auto-generated method stub
-			}
-		});
-		mnTools.add(mntmPostprocessing);
-
 
 		JMenu mnHelp = new JMenu(Messages.getString("AppWindow.6")); //$NON-NLS-1$
 		menuBar.add(mnHelp);
