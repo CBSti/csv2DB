@@ -45,23 +45,23 @@ public class DatabaseTest {
 			Connection con = dataSource.getConnection();
 			System.out.println("Connection "+con);
 			
-			DatabaseSetup.setup(con);
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		
 		Session session = sessionFactory.openSession();
+		System.out.println("Session: "+session);
 //		if(sessionFactory.getCurrentSession() == null){
 //			session = sessionFactory.openSession();
 //		}
 		
 		
-//		locationDao.create(session, 1.0, 2.0, "ABC", 1);
+		locationDao.create(session, 1.0, 2.0, "ABC-2", 1);
 //		
-//		int count = locationDao.count(session);
+		int count = locationDao.count(session);
 //		
-//		System.out.println("Count "+count);
+		System.out.println("Count "+count);
 		
     }
 }
