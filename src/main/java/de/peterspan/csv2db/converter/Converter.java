@@ -4,21 +4,26 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.annotation.Resource;
 import javax.swing.SwingWorker;
 
+import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.Transaction;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.stereotype.Component;
 
 import au.com.bytecode.opencsv.CSVReader;
 import de.peterspan.csv2db.AppWindow;
+import de.peterspan.csv2db.DatasetLine;
 import de.peterspan.csv2db.domain.DatasetDAOImpl;
 import de.peterspan.csv2db.domain.LocationDAOImpl;
 import de.peterspan.csv2db.domain.MeasurementValuesDAOImpl;
+import de.peterspan.csv2db.domain.entities.DataSet;
 import de.peterspan.csv2db.util.ApplicationContextLoader;
 
 @Component
@@ -51,15 +56,25 @@ public class Converter extends SwingWorker<Void, Void> {
 		this.inputFile = inputFile;
 	}
 
+	public void readLine(String[] line, Session session){
+		DatasetLine datasetLine = new DatasetLine(line);
+		DataSet dataset = datasetLine.getDataset();
+		
+		session.saveOrUpdate(dataset);
+	}
+	
 	@Override
 	protected Void doInBackground() throws Exception {
-		setProgress(1);
+		Session session = sessionFactory.openSession();
+		Transaction tx = session.beginTransaction();
+		
 		FileReader fileReader = null;
 		CSVReader csvReader = null;
+		List<String[]> allLines = new ArrayList<String[]>();
 		try {
 			fileReader = new FileReader(inputFile);
 			csvReader = new CSVReader(fileReader, ';');
-			List<String[]> allLines = csvReader.readAll();
+			allLines = csvReader.readAll();
 		} catch (IOException ioe) {
 
 		} finally {
@@ -69,10 +84,25 @@ public class Converter extends SwingWorker<Void, Void> {
 				fileReader.close();
 		}
 
-		for (int i = 1; i <= 100; i++) {
-			setProgress(i);
-			Thread.sleep(150);
+		firePropertyChange("readingLines", false, true);
+		
+		
+		int modFactor = (int)(allLines.size()/100);
+		int counter = 0;
+		int progress = 0;
+		
+		for(String[] line:allLines){
+			counter = counter +1;
+			readLine(line, session);
+			if(counter%modFactor == 0){
+				setProgress(progress+1);
+			}
+			
 		}
+		
+		session.flush();
+		tx.commit();
+		session.close();
 		return null;
 	}
 

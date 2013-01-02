@@ -80,6 +80,7 @@ public class MainPanel extends JPanel {
 
 				@Override
 				public void actionPerformed(ActionEvent arg0) {
+					progressBar.setVisible(true);
 					startConvert();
 				}
 			});
@@ -116,7 +117,9 @@ public class MainPanel extends JPanel {
 	}
 
 	private void startConvert() {
-		progressBar.setVisible(true);
+		progressBar.setIndeterminate(true);
+		progressBar.setString("Reading File...");
+		
 
 		Converter converter = new Converter(getFileSelectionPanel().getInputCsvFile());
 
@@ -124,6 +127,10 @@ public class MainPanel extends JPanel {
 
 			@Override
 			public void propertyChange(PropertyChangeEvent evt) {
+				if("readingLines".equals(evt.getPropertyName())){
+					progressBar.setIndeterminate(false);
+					progressBar.setStringPainted(true);
+				}
 				if ("progress".equals(evt.getPropertyName())) {
 					getProgressBar().setValue((Integer) evt.getNewValue());
 					getProgressBar().setString(
