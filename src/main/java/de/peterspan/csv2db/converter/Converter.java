@@ -10,6 +10,7 @@ import java.util.List;
 import javax.annotation.Resource;
 import javax.swing.SwingWorker;
 
+import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
@@ -24,6 +25,8 @@ import de.peterspan.csv2db.domain.DatasetDAOImpl;
 import de.peterspan.csv2db.domain.LocationDAOImpl;
 import de.peterspan.csv2db.domain.MeasurementValuesDAOImpl;
 import de.peterspan.csv2db.domain.entities.DataSet;
+import de.peterspan.csv2db.domain.entities.Location;
+import de.peterspan.csv2db.domain.entities.MeasurementValues;
 import de.peterspan.csv2db.util.ApplicationContextLoader;
 
 @Component
@@ -56,53 +59,90 @@ public class Converter extends SwingWorker<Void, Void> {
 		this.inputFile = inputFile;
 	}
 
-	public void readLine(String[] line, Session session){
+	public void readLine(String[] line, Session session) {
 		DatasetLine datasetLine = new DatasetLine(line);
 		DataSet dataset = datasetLine.getDataset();
-		
+
 		session.saveOrUpdate(dataset);
+
+		Location loc = datasetLine.getLocation();
+
+		Location sessionLoc = locationDao.getByLocationNumber(session,
+				loc.getLocationNumber());
+
+		if (sessionLoc != null) {
+			dataset.setLocation(sessionLoc);
+			session.saveOrUpdate(dataset);
+		} else {
+			session.saveOrUpdate(loc);
+			dataset.setLocation(loc);
+		}
+
+		MeasurementValues values = datasetLine.getValues();
+
+		session.saveOrUpdate(values);
+
+		dataset.setMeasurementValues(values);
+		session.saveOrUpdate(dataset);
+
 	}
-	
+
 	@Override
 	protected Void doInBackground() throws Exception {
-		Session session = sessionFactory.openSession();
-		Transaction tx = session.beginTransaction();
-		
-		FileReader fileReader = null;
-		CSVReader csvReader = null;
-		List<String[]> allLines = new ArrayList<String[]>();
+		Session session = null;
+		Transaction tx = null;
 		try {
-			fileReader = new FileReader(inputFile);
-			csvReader = new CSVReader(fileReader, ';');
-			allLines = csvReader.readAll();
-		} catch (IOException ioe) {
+			session = sessionFactory.openSession();
+			tx = session.beginTransaction();
+			FileReader fileReader = null;
+			CSVReader csvReader = null;
+			List<String[]> allLines = new ArrayList<String[]>();
+			try {
+				fileReader = new FileReader(inputFile);
+				csvReader = new CSVReader(fileReader, ';');
+				allLines = csvReader.readAll();
+			} catch (IOException ioe) {
 
-		} finally {
-			if (csvReader != null)
-				csvReader.close();
-			if (fileReader != null)
-				fileReader.close();
-		}
-
-		firePropertyChange("readingLines", false, true);
-		
-		
-		int modFactor = (int)(allLines.size()/100);
-		int counter = 0;
-		int progress = 0;
-		
-		for(String[] line:allLines){
-			counter = counter +1;
-			readLine(line, session);
-			if(counter%modFactor == 0){
-				setProgress(progress+1);
+			} finally {
+				if (csvReader != null)
+					csvReader.close();
+				if (fileReader != null)
+					fileReader.close();
 			}
-			
+
+			firePropertyChange("readingLines", false, true);
+
+			int modFactor = (int) (allLines.size() / 100);
+			int counter = 0;
+			int progress = 0;
+			// Removing the heaser
+			// Remove the empty line
+			for (String[] line : allLines) {
+				counter = counter + 1;
+				if (line[0].equals("Standort-Nr.")) {
+					continue;
+				}
+				if (line[0].equals("")) {
+					continue;
+				}
+				readLine(line, session);
+				// if(counter%modFactor == 0){
+				// setProgress(progress+1);
+				// }
+
+			}
+
+			session.flush();
+			tx.commit();
+		} catch (HibernateException he) {
+			if(tx != null){
+				tx.rollback();
+			}
+		}finally{
+			if(session != null){
+				session.close();
+			}
 		}
-		
-		session.flush();
-		tx.commit();
-		session.close();
 		return null;
 	}
 

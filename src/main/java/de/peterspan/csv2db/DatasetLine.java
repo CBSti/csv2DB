@@ -27,6 +27,8 @@ import java.util.List;
 import com.jidesoft.spinner.DateSpinner;
 
 import de.peterspan.csv2db.domain.entities.DataSet;
+import de.peterspan.csv2db.domain.entities.Location;
+import de.peterspan.csv2db.domain.entities.MeasurementValues;
 
 public class DatasetLine {
 
@@ -102,12 +104,173 @@ public class DatasetLine {
 	SimpleDateFormat dateFormat = new SimpleDateFormat("dd.MM.yyyy");
 	List<String> dataValues;
 	
+	public static Double string2double(String value){
+		try{
+			return Double.parseDouble(value);
+		}catch(NumberFormatException nfe){
+			return null;
+		}
+	}
+	
+	public static Integer string2int(String value){
+		try{
+			return Integer.parseInt(value);
+		}catch(NumberFormatException nfe){
+			return null;
+		}
+	}
+	
 	public DatasetLine(String[] values){
 		dataValues = new ArrayList<String>();
 		
 		for(int i=0;i<values.length;i++) {
 			dataValues.add(values[i]);
 		}
+	}
+	
+	public MeasurementValues getValues(){
+		MeasurementValues values = new MeasurementValues();
+		
+		Double value = DatasetLine.string2double(dataValues.get(bhd_1));
+		
+		if(value != null)
+			values.setBhd_1(value);
+		
+		value = DatasetLine.string2double(dataValues.get(bhd_2));
+		
+		if(value != null)
+			values.setBhd_2(value);
+		
+		value = DatasetLine.string2double(dataValues.get(bhd_3));
+		
+		if(value != null)
+			values.setBhd_3(value);
+		
+		value = DatasetLine.string2double(dataValues.get(bhd_4));
+		
+		if(value != null)
+			values.setBhd_4(value);
+		
+		value = DatasetLine.string2double(dataValues.get(bhd_5));
+		
+		if(value != null)
+			values.setBhd_5(value);
+		
+		value = DatasetLine.string2double(dataValues.get(bhd_6));
+		
+		if(value != null)
+			values.setBhd_6(value);
+		
+		value = DatasetLine.string2double(dataValues.get(bhd_7));
+		
+		if(value != null)
+			values.setBhd_7(value);
+		
+		value = DatasetLine.string2double(dataValues.get(bhd_8));
+		
+		if(value != null)
+			values.setBhd_8(value);
+		
+		value = DatasetLine.string2double(dataValues.get(d_01_1));
+		
+		if(value != null)
+			values.setD_01_1(value);
+		
+		value = DatasetLine.string2double(dataValues.get(d_01_2));
+		
+		if(value != null)
+			values.setD_01_2(value);
+		
+		value = DatasetLine.string2double(dataValues.get(d_01_3));
+		
+		if(value != null)
+			values.setD_01_3(value);
+		
+		value = DatasetLine.string2double(dataValues.get(d_01_4));
+		
+		if(value != null)
+			values.setD_01_4(value);
+		
+		value = DatasetLine.string2double(dataValues.get(d_01_5));
+		
+		if(value != null)
+			values.setD_01_5(value);
+		
+		value = DatasetLine.string2double(dataValues.get(d_01_6));
+		
+		if(value != null)
+			values.setD_01_6(value);
+		
+		value = DatasetLine.string2double(dataValues.get(d_01_7));
+		
+		if(value != null)
+			values.setD_01_7(value);
+		
+		value = DatasetLine.string2double(dataValues.get(d_01_1));
+		
+		if(value != null)
+			values.setD_01_8(value);
+		
+		value = DatasetLine.string2double(dataValues.get(l_1));
+		
+		if(value != null)
+			values.setL_1(value);
+		
+		value = DatasetLine.string2double(dataValues.get(l_2));
+		
+		if(value != null)
+			values.setL_2(value);
+		
+		value = DatasetLine.string2double(dataValues.get(l_3));
+		
+		if(value != null)
+			values.setL_3(value);
+		
+		value = DatasetLine.string2double(dataValues.get(l_4));
+		
+		if(value != null)
+			values.setL_4(value);
+		
+		value = DatasetLine.string2double(dataValues.get(l_5));
+		
+		if(value != null)
+			values.setL_5(value);
+		
+		value = DatasetLine.string2double(dataValues.get(l_6));
+		
+		if(value != null)
+			values.setL_6(value);
+		
+		value = DatasetLine.string2double(dataValues.get(l_7));
+		
+		if(value != null)
+			values.setL_7(value);
+		
+		value = DatasetLine.string2double(dataValues.get(l_8));
+		
+		if(value != null)
+			values.setL_8(value);
+		
+		value = DatasetLine.string2double(dataValues.get(height));
+		
+		if(value != null)
+			values.setHeight(value);
+		
+		Integer numberOfSprouds = DatasetLine.string2int(dataValues.get(number_of_sprouds));
+		
+		if(numberOfSprouds != null)
+			values.setNumberOfSprouds(numberOfSprouds);
+			
+		return values;
+	}
+	
+	public Location getLocation(){
+		Location loc = new Location();
+		
+		loc.setLocationNumber(Integer.parseInt(dataValues.get(location_number)));
+		loc.setName(dataValues.get(location_name));
+		
+		return loc;
 	}
 	
 	/**
