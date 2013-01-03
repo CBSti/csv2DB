@@ -16,7 +16,7 @@
  *  You should have received a copy of the GNU General Public License
  *  along with csv2db.  If not, see <http://www.gnu.org/licenses/>.
  */
-package de.peterspan.csv2db;
+package de.peterspan.csv2db.converter;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
