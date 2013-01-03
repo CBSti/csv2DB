@@ -20,7 +20,6 @@ import org.springframework.stereotype.Component;
 
 import au.com.bytecode.opencsv.CSVReader;
 import de.peterspan.csv2db.AppWindow;
-import de.peterspan.csv2db.DatasetLine;
 import de.peterspan.csv2db.domain.DatasetDAOImpl;
 import de.peterspan.csv2db.domain.LocationDAOImpl;
 import de.peterspan.csv2db.domain.MeasurementValuesDAOImpl;
@@ -54,7 +53,7 @@ public class Converter extends SwingWorker<Void, Void> {
 
 	public Converter(File inputFile) {
 		super();
-		URL resource = AppWindow.class.getResource("./app-config.xml");
+		URL resource = AppWindow.class.getResource("app-config.xml");
 		new ApplicationContextLoader().load(this, resource.toString());
 		this.inputFile = inputFile;
 	}
