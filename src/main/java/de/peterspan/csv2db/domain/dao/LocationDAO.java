@@ -23,12 +23,14 @@ public class LocationDAO {
 	public final static String FIELD__LATITUDE = getField(Location.class, "latitude");
 	public final static String FIELD__NAME = getField(Location.class, "name");
 	public final static String FIELD__LOCATIONNUMBER = getField(Location.class, "locationNumber");
+	public final static String FIELD__INSTITUTION = getField(Location.class, "institution");
+	public final static String FIELD__WORKPACKAGE = getField(Location.class, "workPackage");
 	
 	/**
 	 * Creates a Location using all read-only and all non-null properties.
 	 */
-	public Location create(Session session, double longitude, double latitude, java.lang.String name, int locationNumber) {
-		Location newEntity = new Location(longitude, latitude, name, locationNumber);
+	public Location create(Session session, double longitude, double latitude, java.lang.String name, int locationNumber, java.lang.String institution, java.lang.String workPackage) {
+		Location newEntity = new Location(longitude, latitude, name, locationNumber, institution, workPackage);
 		session.save(newEntity);
 		return newEntity;
 	}
@@ -71,6 +73,8 @@ public class LocationDAO {
 		Criteria criteria = _session.createCriteria(Location.class);
 		Disjunction disjunction = Restrictions.disjunction();
 		disjunction.add(Restrictions.like(FIELD__NAME, _searchString.trim(), MatchMode.ANYWHERE));
+		disjunction.add(Restrictions.like(FIELD__INSTITUTION, _searchString.trim(), MatchMode.ANYWHERE));
+		disjunction.add(Restrictions.like(FIELD__WORKPACKAGE, _searchString.trim(), MatchMode.ANYWHERE));
 		criteria = criteria.add(disjunction);
 		criteria = criteria.setMaxResults(_maxResults);
 		@SuppressWarnings("unchecked")

@@ -27,6 +27,8 @@ CREATE TABLE `location` (
   `locationnumber` int(11) DEFAULT NULL,
   `longitude` double DEFAULT NULL,
   `name` varchar(255) DEFAULT NULL,
+  `institution` varchar(255) DEFAULT '',
+  `workpackage` varchar(255) DEFAULT '',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8
 ```

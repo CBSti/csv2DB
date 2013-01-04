@@ -12,7 +12,7 @@ public interface IDBOperationsBase {
 	/**
 	 * Creates a new Location using all read-only and all non-null properties.
 	 */
-	public Location createLocation(double longitude, double latitude, java.lang.String name, int locationNumber);
+	public Location createLocation(double longitude, double latitude, java.lang.String name, int locationNumber, java.lang.String institution, java.lang.String workPackage);
 	
 	/**
 	 * Returns the Location with the given id.

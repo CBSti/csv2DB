@@ -276,6 +276,16 @@ public class DatasetLine {
 		dataset.setRotation(Integer.parseInt(dataValues.get(rotation)));
 		dataset.setStandingYear(Integer.parseInt(dataValues.get(standing_year)));
 		dataset.setTreeType(Integer.parseInt(dataValues.get(tree_type)));
+		dataset.setTreeNumber(Integer.parseInt(dataValues.get(treeNumber)));
+		
+		StringBuilder sb = new StringBuilder();
+		sb.append(dataset.getTreeType());
+		sb.append(".");
+		sb.append(dataset.getRepetition());
+		sb.append(" - ");
+		sb.append(dataset.getTreeNumber());
+		
+		dataset.setIdentNumber(sb.toString());
 
 		return dataset;
 	}

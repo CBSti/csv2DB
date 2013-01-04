@@ -45,6 +45,12 @@ public class Location {
 	@Column(name="locationnumber")
 	private int locationNumber;
 	
+	@Column(name="institution")
+	private java.lang.String institution;
+	
+	@Column(name="workpackage")
+	private java.lang.String workPackage;
+	
 	/**
 	 * Default constructor. Only used by Hibernate.
 	 */
@@ -55,12 +61,14 @@ public class Location {
 	/**
 	 * Constructor using all read-only and all non-nullable properties.
 	 */
-	public Location(double longitude, double latitude, java.lang.String name, int locationNumber) {
+	public Location(double longitude, double latitude, java.lang.String name, int locationNumber, java.lang.String institution, java.lang.String workPackage) {
 		super();
 		this.longitude = longitude;
 		this.latitude = latitude;
 		this.name = name;
 		this.locationNumber = locationNumber;
+		this.institution = institution;
+		this.workPackage = workPackage;
 	}
 	
 	/**
@@ -134,6 +142,34 @@ public class Location {
 	 */
 	public void setLocationNumber(int newValue) {
 		this.locationNumber = newValue;
+	}
+	
+	/**
+	 * Returns the value of property 'institution'.
+	 */
+	public java.lang.String getInstitution() {
+		return institution;
+	}
+	
+	/**
+	 * Sets the value of property 'institution'.
+	 */
+	public void setInstitution(java.lang.String newValue) {
+		this.institution = newValue;
+	}
+	
+	/**
+	 * Returns the value of property 'workPackage'.
+	 */
+	public java.lang.String getWorkPackage() {
+		return workPackage;
+	}
+	
+	/**
+	 * Sets the value of property 'workPackage'.
+	 */
+	public void setWorkPackage(java.lang.String newValue) {
+		this.workPackage = newValue;
 	}
 	
 }

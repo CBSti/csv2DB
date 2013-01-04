@@ -39,8 +39,8 @@ public abstract class OperationProviderBase implements IDBOperationsBase {
 	/** 
 	 * Creates an instance of type Location using all read-only and all non-null properties.
 	 */
-	public Location createLocation(double longitude, double latitude, java.lang.String name, int locationNumber) {
-		return locationDAO.create(session, longitude, latitude, name, locationNumber);
+	public Location createLocation(double longitude, double latitude, java.lang.String name, int locationNumber, java.lang.String institution, java.lang.String workPackage) {
+		return locationDAO.create(session, longitude, latitude, name, locationNumber, institution, workPackage);
 	}
 	
 	/**

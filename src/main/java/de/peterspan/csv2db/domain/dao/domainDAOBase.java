@@ -155,12 +155,12 @@ public abstract class domainDAOBase implements IDBOperationsBase {
 	/**
 	 * Creates a new Location using all read-only and all non-null properties.
 	 */
-	public Location createLocation(final double longitude, final double latitude, final java.lang.String name, final int locationNumber) {
+	public Location createLocation(final double longitude, final double latitude, final java.lang.String name, final int locationNumber, final java.lang.String institution, final java.lang.String workPackage) {
 		final Location[] entity = new Location[1];
 		executeInTransaction(new ICommand() {
 			
 			public void execute(IDBOperations operations) {
-				entity[0] = operations.createLocation(longitude, latitude, name, locationNumber);
+				entity[0] = operations.createLocation(longitude, latitude, name, locationNumber, institution, workPackage);
 			}
 		});
 		return entity[0];

@@ -3,6 +3,8 @@ Location{
 	Double latitude;
 	String name;
 	unique Int locationNumber;
+	String institution;
+	String workPackage;
 }
 
 DataSet {
