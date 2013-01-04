@@ -99,6 +99,8 @@ public class DatasetLine {
 	public static final int remark = 31;
 	public static final int location_name = 32;
 	public static final int measurement_date = 33;
+	
+	public static final int treeNumber = 34;
 
 	// 17.11.2010
 	SimpleDateFormat dateFormat = new SimpleDateFormat("dd.MM.yyyy");
