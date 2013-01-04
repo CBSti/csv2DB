@@ -47,7 +47,7 @@ public interface IDBOperationsBase {
 	/**
 	 * Creates a new DataSet using all read-only and all non-null properties.
 	 */
-	public DataSet createDataSet(java.util.Date acquisitionDate, int standingYear, int rotation, int treeType, int repetition);
+	public DataSet createDataSet(java.util.Date acquisitionDate, int standingYear, int rotation, int treeType, int repetition, int treeNumber, java.lang.String identNumber);
 	
 	/**
 	 * Returns the DataSet with the given id.

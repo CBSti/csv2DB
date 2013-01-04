@@ -11,6 +11,8 @@ DataSet {
 	Int rotation;
 	Int treeType;
 	Int repetition;
+	Int treeNumber;
+	String identNumber;
 	nullable Location location; 
 	nullable MeasurementValues measurementValues;
 	nullable LongString remark;

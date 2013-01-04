@@ -89,8 +89,8 @@ public abstract class OperationProviderBase implements IDBOperationsBase {
 	/** 
 	 * Creates an instance of type DataSet using all read-only and all non-null properties.
 	 */
-	public DataSet createDataSet(java.util.Date acquisitionDate, int standingYear, int rotation, int treeType, int repetition) {
-		return dataSetDAO.create(session, acquisitionDate, standingYear, rotation, treeType, repetition);
+	public DataSet createDataSet(java.util.Date acquisitionDate, int standingYear, int rotation, int treeType, int repetition, int treeNumber, java.lang.String identNumber) {
+		return dataSetDAO.create(session, acquisitionDate, standingYear, rotation, treeType, repetition, treeNumber, identNumber);
 	}
 	
 	/**

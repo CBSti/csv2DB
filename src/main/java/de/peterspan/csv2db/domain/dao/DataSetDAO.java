@@ -26,6 +26,8 @@ public class DataSetDAO {
 	public final static String FIELD__ROTATION = getField(DataSet.class, "rotation");
 	public final static String FIELD__TREETYPE = getField(DataSet.class, "treeType");
 	public final static String FIELD__REPETITION = getField(DataSet.class, "repetition");
+	public final static String FIELD__TREENUMBER = getField(DataSet.class, "treeNumber");
+	public final static String FIELD__IDENTNUMBER = getField(DataSet.class, "identNumber");
 	public final static String FIELD__LOCATION = getField(DataSet.class, "location");
 	public final static String FIELD__MEASUREMENTVALUES = getField(DataSet.class, "measurementValues");
 	public final static String FIELD__REMARK = getField(DataSet.class, "remark");
@@ -33,8 +35,8 @@ public class DataSetDAO {
 	/**
 	 * Creates a DataSet using all read-only and all non-null properties.
 	 */
-	public DataSet create(Session session, java.util.Date acquisitionDate, int standingYear, int rotation, int treeType, int repetition) {
-		DataSet newEntity = new DataSet(acquisitionDate, standingYear, rotation, treeType, repetition);
+	public DataSet create(Session session, java.util.Date acquisitionDate, int standingYear, int rotation, int treeType, int repetition, int treeNumber, java.lang.String identNumber) {
+		DataSet newEntity = new DataSet(acquisitionDate, standingYear, rotation, treeType, repetition, treeNumber, identNumber);
 		session.save(newEntity);
 		return newEntity;
 	}
@@ -109,6 +111,7 @@ public class DataSetDAO {
 	public List<DataSet> search(Session _session, String _searchString, int _maxResults) {
 		Criteria criteria = _session.createCriteria(DataSet.class);
 		Disjunction disjunction = Restrictions.disjunction();
+		disjunction.add(Restrictions.like(FIELD__IDENTNUMBER, _searchString.trim(), MatchMode.ANYWHERE));
 		disjunction.add(Restrictions.like(FIELD__REMARK, _searchString.trim(), MatchMode.ANYWHERE));
 		criteria = criteria.add(disjunction);
 		criteria = criteria.setMaxResults(_maxResults);
@@ -125,6 +128,7 @@ public class DataSetDAO {
 		// restrict by the value of the unique property
 		criteria = criteria.add(Restrictions.eq(FIELD__LOCATION, location));
 		Disjunction disjunction = Restrictions.disjunction();
+		disjunction.add(Restrictions.like(FIELD__IDENTNUMBER, _searchString.trim(), MatchMode.ANYWHERE));
 		disjunction.add(Restrictions.like(FIELD__REMARK, _searchString.trim(), MatchMode.ANYWHERE));
 		criteria = criteria.add(disjunction);
 		criteria = criteria.setMaxResults(_maxResults);
@@ -141,6 +145,7 @@ public class DataSetDAO {
 		// restrict by the value of the unique property
 		criteria = criteria.add(Restrictions.eq(FIELD__MEASUREMENTVALUES, measurementValues));
 		Disjunction disjunction = Restrictions.disjunction();
+		disjunction.add(Restrictions.like(FIELD__IDENTNUMBER, _searchString.trim(), MatchMode.ANYWHERE));
 		disjunction.add(Restrictions.like(FIELD__REMARK, _searchString.trim(), MatchMode.ANYWHERE));
 		criteria = criteria.add(disjunction);
 		criteria = criteria.setMaxResults(_maxResults);

@@ -54,6 +54,12 @@ public class DataSet {
 	@Column(name="repetition")
 	private int repetition;
 	
+	@Column(name="treenumber")
+	private int treeNumber;
+	
+	@Column(name="identnumber")
+	private java.lang.String identNumber;
+	
 	@OneToOne(cascade={CascadeType.ALL})
 	@JoinColumn(name="location", nullable=true)
 	private Location location;
@@ -75,13 +81,15 @@ public class DataSet {
 	/**
 	 * Constructor using all read-only and all non-nullable properties.
 	 */
-	public DataSet(java.util.Date acquisitionDate, int standingYear, int rotation, int treeType, int repetition) {
+	public DataSet(java.util.Date acquisitionDate, int standingYear, int rotation, int treeType, int repetition, int treeNumber, java.lang.String identNumber) {
 		super();
 		this.acquisitionDate = acquisitionDate;
 		this.standingYear = standingYear;
 		this.rotation = rotation;
 		this.treeType = treeType;
 		this.repetition = repetition;
+		this.treeNumber = treeNumber;
+		this.identNumber = identNumber;
 	}
 	
 	/**
@@ -169,6 +177,34 @@ public class DataSet {
 	 */
 	public void setRepetition(int newValue) {
 		this.repetition = newValue;
+	}
+	
+	/**
+	 * Returns the value of property 'treeNumber'.
+	 */
+	public int getTreeNumber() {
+		return treeNumber;
+	}
+	
+	/**
+	 * Sets the value of property 'treeNumber'.
+	 */
+	public void setTreeNumber(int newValue) {
+		this.treeNumber = newValue;
+	}
+	
+	/**
+	 * Returns the value of property 'identNumber'.
+	 */
+	public java.lang.String getIdentNumber() {
+		return identNumber;
+	}
+	
+	/**
+	 * Sets the value of property 'identNumber'.
+	 */
+	public void setIdentNumber(java.lang.String newValue) {
+		this.identNumber = newValue;
 	}
 	
 	/**
