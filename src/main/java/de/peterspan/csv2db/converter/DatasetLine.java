@@ -106,6 +106,7 @@ public class DatasetLine {
 
 	public static Double string2double(String value) {
 		try {
+			value = value.replace(",", ".");
 			return Double.parseDouble(value);
 		} catch (NumberFormatException nfe) {
 			return null;
@@ -228,7 +229,7 @@ public class DatasetLine {
 		values.setL_8(value);
 
 		value = DatasetLine.string2double(dataValues.get(height));
-
+		System.out.print("Height "+value);
 		values.setHeight(value);
 
 		Integer numberOfSprouds = DatasetLine.string2int(dataValues
