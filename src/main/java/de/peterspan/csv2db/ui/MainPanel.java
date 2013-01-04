@@ -35,6 +35,7 @@ import com.jgoodies.forms.layout.FormLayout;
 import com.jidesoft.swing.JideBorderLayout;
 
 import de.peterspan.csv2db.converter.Converter;
+import de.peterspan.csv2db.converter.LocationConverter;
 import de.peterspan.csv2db.ui.res.Messages;
 
 public class MainPanel extends JPanel {
@@ -43,7 +44,7 @@ public class MainPanel extends JPanel {
 
 	JFrame parent;
 	FileSelectionPanel fileSelectionPanel;
-	JButton readInputButton;
+	JButton readInputButton, readLocationButton;
 	JProgressBar progressBar;
 
 	public MainPanel(JFrame parent) {
@@ -62,11 +63,31 @@ public class MainPanel extends JPanel {
 
 		ButtonBarBuilder buttonBarBuilder = new ButtonBarBuilder();
 		buttonBarBuilder.addGlue();
+		buttonBarBuilder.addButton(getReadLocationButton());
 		buttonBarBuilder.addButton(getReadInputButton());
 
 		builder.append(getProgressBar());
 		builder.append(buttonBarBuilder.build());
 		add(builder.getPanel(), BorderLayout.SOUTH);
+	}
+
+	private JButton getReadLocationButton() {
+		if (readLocationButton == null) {
+			readLocationButton = new JButton();
+			readLocationButton.setText("Read Locations"); //$NON-NLS-1$
+
+			readLocationButton.setEnabled(false);
+
+			readLocationButton.addActionListener(new ActionListener() {
+
+				@Override
+				public void actionPerformed(ActionEvent arg0) {
+					progressBar.setVisible(true);
+					startLocationConvert();
+				}
+			});
+		}
+		return readLocationButton;
 	}
 
 	private JButton getReadInputButton() {
@@ -75,7 +96,7 @@ public class MainPanel extends JPanel {
 			readInputButton.setText(Messages.getString("MainPanel.1")); //$NON-NLS-1$
 
 			readInputButton.setEnabled(false);
-			
+
 			readInputButton.addActionListener(new ActionListener() {
 
 				@Override
@@ -99,6 +120,7 @@ public class MainPanel extends JPanel {
 						public void propertyChange(PropertyChangeEvent evt) {
 							if ("csvFileSelected".equals(evt.getPropertyName())) {
 								getReadInputButton().setEnabled(true);
+								getReadLocationButton().setEnabled(true);
 							}
 
 						}
@@ -116,18 +138,49 @@ public class MainPanel extends JPanel {
 		return progressBar;
 	}
 
-	private void startConvert() {
+	private void startLocationConvert() {
 		progressBar.setIndeterminate(true);
 		progressBar.setString("Reading File...");
-		
 
-		Converter converter = new Converter(getFileSelectionPanel().getInputCsvFile());
+		LocationConverter converter = new LocationConverter(
+				getFileSelectionPanel().getInputCsvFile());
 
 		converter.addPropertyChangeListener(new PropertyChangeListener() {
 
 			@Override
 			public void propertyChange(PropertyChangeEvent evt) {
-				if("readingLines".equals(evt.getPropertyName())){
+				if ("readingLines".equals(evt.getPropertyName())) {
+					progressBar.setIndeterminate(false);
+					progressBar.setStringPainted(true);
+				}
+				if ("progress".equals(evt.getPropertyName())) {
+					getProgressBar().setValue((Integer) evt.getNewValue());
+					getProgressBar().setString(
+							(Integer) evt.getNewValue() + "%");
+				}
+
+				if ("done".equals(evt.getPropertyName())) {
+					System.out.println("Done");
+					progressBar.setVisible(false);
+				}
+			}
+		});
+
+		converter.execute();
+	}
+
+	private void startConvert() {
+		progressBar.setIndeterminate(true);
+		progressBar.setString("Reading File...");
+
+		Converter converter = new Converter(getFileSelectionPanel()
+				.getInputCsvFile());
+
+		converter.addPropertyChangeListener(new PropertyChangeListener() {
+
+			@Override
+			public void propertyChange(PropertyChangeEvent evt) {
+				if ("readingLines".equals(evt.getPropertyName())) {
 					progressBar.setIndeterminate(false);
 					progressBar.setStringPainted(true);
 				}
