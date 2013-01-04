@@ -30,24 +30,7 @@ CREATE TABLE `location` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8
 ```
-```sql
-CREATE TABLE `dataset` (
-  `id` int(11) NOT NULL,
-  `acquisitiondate` datetime DEFAULT NULL,
-  `remark` longtext,
-  `repetition` int(11) DEFAULT NULL,
-  `rotation` int(11) DEFAULT NULL,
-  `standingyear` int(11) DEFAULT NULL,
-  `treetype` int(11) DEFAULT NULL,
-  `location` int(11) DEFAULT NULL,
-  `measurementvalues` int(11) DEFAULT NULL,
-  PRIMARY KEY (`id`),
-  KEY `FK5605B478FF8951AC` (`location`),
-  KEY `FK5605B4789ED5BBDA` (`measurementvalues`),
-  CONSTRAINT `FK5605B4789ED5BBDA` FOREIGN KEY (`measurementvalues`) REFERENCES `measurementvalues` (`id`),
-  CONSTRAINT `FK5605B478FF8951AC` FOREIGN KEY (`location`) REFERENCES `location` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8
-```
+
 ```sql
 CREATE TABLE `measurementvalues` (
   `id` int(11) NOT NULL,
@@ -80,6 +63,28 @@ CREATE TABLE `measurementvalues` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8
 ```
+
+```sql
+CREATE TABLE `dataset` (
+  `id` int(11) NOT NULL,
+  `acquisitiondate` datetime DEFAULT NULL,
+  `remark` longtext,
+  `repetition` int(11) DEFAULT NULL,
+  `rotation` int(11) DEFAULT NULL,
+  `standingyear` int(11) DEFAULT NULL,
+  `treetype` int(11) DEFAULT NULL,
+  `location` int(11) DEFAULT NULL,
+  `measurementvalues` int(11) DEFAULT NULL,
+  `treenumber` int(11) NOT NULL DEFAULT '0',
+  `identnumber` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `FK5605B478FF8951AC` (`location`),
+  KEY `FK5605B4789ED5BBDA` (`measurementvalues`),
+  CONSTRAINT `FK5605B4789ED5BBDA` FOREIGN KEY (`measurementvalues`) REFERENCES `measurementvalues` (`id`),
+  CONSTRAINT `FK5605B478FF8951AC` FOREIGN KEY (`location`) REFERENCES `location` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8
+```
+
 
 Acknowledgment
 ==============
