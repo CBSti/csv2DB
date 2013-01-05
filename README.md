@@ -7,6 +7,7 @@ Requirements
 * [HEDL - Hibernate Entity Description Language](http://www.hibernate-dsl.org/index.php/HEDL)
 * [Maven](http://www.apache.maven.org)
 * MySql Database
+* **Java 7** Runtime Environment
 
 Table Creation
 ==============
