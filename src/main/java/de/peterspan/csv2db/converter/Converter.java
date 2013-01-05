@@ -1,61 +1,43 @@
+/**
+ *  Copyright 2012-2013 Frederik Hahne, Christoph Stiehm
+ *
+ * 	This file is part of csv2db.
+ *
+ *  csv2db is free software: you can redistribute it and/or modify
+ *  it under the terms of the GNU General Public License as published by
+ *  the Free Software Foundation, either version 3 of the License, or
+ *  (at your option) any later version.
+ *
+ *  csv2db is distributed in the hope that it will be useful,
+ * 	but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ *  GNU General Public License for more details.
+ *
+ *  You should have received a copy of the GNU General Public License
+ *  along with csv2db.  If not, see <http://www.gnu.org/licenses/>.
+ */
 package de.peterspan.csv2db.converter;
 
 import java.io.File;
-import java.io.FileReader;
-import java.io.IOException;
-import java.net.URL;
-import java.util.ArrayList;
 import java.util.List;
-
-import javax.annotation.Resource;
-import javax.swing.SwingWorker;
 
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
-import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.ApplicationContext;
-import org.springframework.stereotype.Component;
 
-import au.com.bytecode.opencsv.CSVReader;
-import de.peterspan.csv2db.AppWindow;
-import de.peterspan.csv2db.domain.DatasetDAOImpl;
-import de.peterspan.csv2db.domain.LocationDAOImpl;
-import de.peterspan.csv2db.domain.MeasurementValuesDAOImpl;
 import de.peterspan.csv2db.domain.entities.DataSet;
 import de.peterspan.csv2db.domain.entities.Location;
 import de.peterspan.csv2db.domain.entities.MeasurementValues;
-import de.peterspan.csv2db.util.ApplicationContextLoader;
 
-@Component
-public class Converter extends SwingWorker<Void, Void> {
-
-	@Autowired
-	private ApplicationContext applicationContext;
-
-	@Resource
-	SessionFactory sessionFactory;
-
-	@Resource
-	LocationDAOImpl locationDao;
-
-	@Resource
-	DatasetDAOImpl datasetDao;
-
-	@Resource
-	MeasurementValuesDAOImpl valuesDao;
-
-	File inputFile;
+public class Converter extends AbstractConverter {
 
 	public Converter() {
+		super();
 	};
 
 	public Converter(File inputFile) {
-		super();
-		URL resource = AppWindow.class.getResource("app-config.xml");
-		new ApplicationContextLoader().load(this, resource.toString());
-		this.inputFile = inputFile;
+		super(inputFile);
+	
 	}
 
 	public void readLine(String[] line, Session session) {
@@ -93,31 +75,14 @@ public class Converter extends SwingWorker<Void, Void> {
 		try {
 			session = sessionFactory.openSession();
 			tx = session.beginTransaction();
-			FileReader fileReader = null;
-			CSVReader csvReader = null;
-			List<String[]> allLines = new ArrayList<String[]>();
-			try {
-				fileReader = new FileReader(inputFile);
-				csvReader = new CSVReader(fileReader, ';');
-				allLines = csvReader.readAll();
-			} catch (IOException ioe) {
+			List<String[]> allLines = readFile();
 
-			} finally {
-				if (csvReader != null)
-					csvReader.close();
-				if (fileReader != null)
-					fileReader.close();
-			}
-
-			firePropertyChange("readingLines", false, true);
-
-			int modFactor = (int) (allLines.size() / 100);
-			int counter = 0;
-			int progress = 0;
-			// Removing the heaser
-			// Remove the empty line
+			double increment = 100.0 / allLines.size();
+			double progress = 0.0;
 			for (String[] line : allLines) {
-				counter = counter + 1;
+				progress = progress + increment;
+				setProgress((int)Math.round(progress));
+				
 				if (line[0].equals("Standort-Nr.")) {
 					continue;
 				}
@@ -125,10 +90,6 @@ public class Converter extends SwingWorker<Void, Void> {
 					continue;
 				}
 				readLine(line, session);
-				// if(counter%modFactor == 0){
-				// setProgress(progress+1);
-				// }
-
 			}
 
 			session.flush();
@@ -145,8 +106,4 @@ public class Converter extends SwingWorker<Void, Void> {
 		return null;
 	}
 
-	@Override
-	public void done() {
-		firePropertyChange("done", false, true);
-	}
 }

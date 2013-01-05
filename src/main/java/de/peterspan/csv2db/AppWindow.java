@@ -56,6 +56,7 @@ import de.peterspan.csv2db.ui.MainPanel;
 import de.peterspan.csv2db.ui.about.AboutDialog;
 import de.peterspan.csv2db.ui.res.Icons;
 import de.peterspan.csv2db.ui.res.Messages;
+import de.peterspan.csv2db.util.ApplicationContextLoader;
 import de.peterspan.csv2db.util.DialogUtil;
 import de.peterspan.csv2db.util.SingleInstance;
 
