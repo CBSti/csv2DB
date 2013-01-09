@@ -82,7 +82,7 @@ public class AppWindow {
 					DialogUtil
 							.getInstance()
 							.showErrorDialog("Lock Exception",
-									"<html><b>A lock is already set.</b><br>Make sure no other instance of Plant Evaluation is running and restart the application.</html>");
+									"<html><b>A lock is already set.</b><br>Make sure no other instance of csv2DB is running and restart the application.</html>");
 					System.exit(0);
 				} catch (Exception e) {
 					e.printStackTrace();
