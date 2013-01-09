@@ -58,13 +58,16 @@
 			</props>
 		</property>
 	</bean>
+	<!-- setup transaction manager -->
 	<bean
 		id="transactionManager"
 		class="org.springframework.orm.hibernate4.HibernateTransactionManager"
 	>
-		<property name="sessionFactory">
-			<ref bean="sessionFactory"/>
-		</property>
+		<property
+			name="sessionFactory"
+			ref="sessionFactory"/>
 	</bean>
+	<!-- tells Spring to put transactional advice on any class
+		or method that has an @Transactional annotation on it -->
 	<tx:annotation-driven/>
 </beans>
