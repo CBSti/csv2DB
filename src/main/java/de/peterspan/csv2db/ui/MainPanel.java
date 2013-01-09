@@ -35,7 +35,7 @@ import com.jgoodies.forms.layout.FormLayout;
 import com.jidesoft.swing.JideBorderLayout;
 
 import de.peterspan.csv2db.converter.Converter;
-import de.peterspan.csv2db.converter.LocationConverter;
+import de.peterspan.csv2db.converter.location.LocationConverter;
 import de.peterspan.csv2db.ui.res.Messages;
 
 public class MainPanel extends JPanel {

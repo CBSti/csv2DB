@@ -16,7 +16,7 @@
  *  You should have received a copy of the GNU General Public License
  *  along with csv2db.  If not, see <http://www.gnu.org/licenses/>.
  */
-package de.peterspan.csv2db.converter;
+package de.peterspan.csv2db.converter.location;
 
 import java.io.File;
 import java.io.FileReader;
@@ -39,6 +39,7 @@ import org.springframework.stereotype.Component;
 import au.com.bytecode.opencsv.CSVReader;
 
 import de.peterspan.csv2db.AppWindow;
+import de.peterspan.csv2db.converter.AbstractConverter;
 import de.peterspan.csv2db.domain.LocationDAOImpl;
 import de.peterspan.csv2db.domain.entities.DataSet;
 import de.peterspan.csv2db.domain.entities.Location;

@@ -16,26 +16,22 @@
  *  You should have received a copy of the GNU General Public License
  *  along with csv2db.  If not, see <http://www.gnu.org/licenses/>.
  */
-package de.peterspan.csv2db.converter;
+package de.peterspan.csv2db.converter.location;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import de.peterspan.csv2db.converter.AbstractDataLine;
 import de.peterspan.csv2db.domain.entities.Location;
 
-public class LocationDataLine {
+public class LocationDataLine extends AbstractDataLine{
 	public static final int location_number = 0;
 	public static final int institution = 1;
 	public static final int location_name = 2;
 	public static final int work_package = 3;
-	List<String> dataValues;
 
 	public LocationDataLine(String[] values) {
-		dataValues = new ArrayList<String>();
-
-		for (int i = 0; i < values.length; i++) {
-			dataValues.add(values[i]);
-		}
+		super(values)
 	}
 
 	public Location getLocation() {
