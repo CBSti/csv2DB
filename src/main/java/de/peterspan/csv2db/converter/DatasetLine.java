@@ -30,7 +30,7 @@ import de.peterspan.csv2db.domain.entities.DataSet;
 import de.peterspan.csv2db.domain.entities.Location;
 import de.peterspan.csv2db.domain.entities.MeasurementValues;
 
-public class DatasetLine {
+public class DatasetLine extends AbstractDataLine{
 
 	/**
 	 * Standort Nr
@@ -104,31 +104,10 @@ public class DatasetLine {
 
 	// 17.11.2010
 	SimpleDateFormat dateFormat = new SimpleDateFormat("dd.MM.yyyy");
-	List<String> dataValues;
 
-	public static Double string2double(String value) {
-		try {
-			value = value.replace(",", ".");
-			return Double.parseDouble(value);
-		} catch (NumberFormatException nfe) {
-			return null;
-		}
-	}
-
-	public static Integer string2int(String value) {
-		try {
-			return Integer.parseInt(value);
-		} catch (NumberFormatException nfe) {
-			return null;
-		}
-	}
 
 	public DatasetLine(String[] values) {
-		dataValues = new ArrayList<String>();
-
-		for (int i = 0; i < values.length; i++) {
-			dataValues.add(values[i]);
-		}
+		super(values);
 	}
 
 	public MeasurementValues getValues() {
