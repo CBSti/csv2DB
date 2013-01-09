@@ -31,7 +31,7 @@ public class LocationDataLine extends AbstractDataLine{
 	public static final int work_package = 3;
 
 	public LocationDataLine(String[] values) {
-		super(values)
+		super(values);
 	}
 
 	public Location getLocation() {

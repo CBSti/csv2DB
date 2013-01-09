@@ -44,21 +44,21 @@ import de.peterspan.csv2db.util.ApplicationContextLoader;
 public abstract class AbstractConverter extends SwingWorker<Void, Void> {
 
 	@Autowired
-	ApplicationContext applicationContext;
+	protected ApplicationContext applicationContext;
 
 	@Resource
-	SessionFactory sessionFactory;
+	protected SessionFactory sessionFactory;
 
 	@Resource
-	LocationDAOImpl locationDao;
+	protected LocationDAOImpl locationDao;
 
 	@Resource
-	DatasetDAOImpl datasetDao;
+	protected DatasetDAOImpl datasetDao;
 
 	@Resource
-	MeasurementValuesDAOImpl valuesDao;
+	protected MeasurementValuesDAOImpl valuesDao;
 
-	File inputFile;
+	protected File inputFile;
 
 	public AbstractConverter(){
 		
@@ -77,7 +77,7 @@ public abstract class AbstractConverter extends SwingWorker<Void, Void> {
 		new ApplicationContextLoader().load(this, resource.toString());
 	}
 
-	List<String[]> readFile() throws Exception {
+	protected List<String[]> readFile() throws Exception {
 		FileReader fileReader = null;
 		CSVReader csvReader = null;
 		List<String[]> allLines = new ArrayList<String[]>();
