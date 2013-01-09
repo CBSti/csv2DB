@@ -69,7 +69,7 @@ public class AboutPanel extends JPanel {
 	public AboutPanel(JDialog parentDialog) throws URISyntaxException {
 		sourceCodeUri = new URI(Messages.getString("AboutPanel.sourceCode")); //$NON-NLS-1$
 		tangoIconThemeUri = new URI("http://tango.freedesktop.org/Tango_Icon_Library");
-		webSiteUri = new URI("https://github.com/peterspan/csv2DB");
+		webSiteUri = new URI(Messages.getString("AboutPanel.website"));
 		this.parentDialog = parentDialog;
 		setLayout(new FormLayout(new ColumnSpec[] { FormSpecs.RELATED_GAP_COLSPEC, FormSpecs.DEFAULT_COLSPEC, FormSpecs.RELATED_GAP_COLSPEC,
 				ColumnSpec.decode("max(51dlu;default)"), }, new RowSpec[] { FormSpecs.RELATED_GAP_ROWSPEC, FormSpecs.DEFAULT_ROWSPEC, FormSpecs.RELATED_GAP_ROWSPEC,
