@@ -34,82 +34,82 @@ public class MeasurementValues {
 	private int id;
 
 	@Column(name="numberofsprouds")
-	private int numberOfSprouds;
+	private java.lang.Integer numberOfSprouds;
 	
 	@Column(name="bhd_1")
-	private double bhd_1;
+	private java.lang.Double bhd_1;
 	
 	@Column(name="d_01_1")
-	private double d_01_1;
+	private java.lang.Double d_01_1;
 	
 	@Column(name="bhd_2")
-	private double bhd_2;
+	private java.lang.Double bhd_2;
 	
 	@Column(name="d_01_2")
-	private double d_01_2;
+	private java.lang.Double d_01_2;
 	
 	@Column(name="bhd_3")
-	private double bhd_3;
+	private java.lang.Double bhd_3;
 	
 	@Column(name="d_01_3")
-	private double d_01_3;
+	private java.lang.Double d_01_3;
 	
 	@Column(name="bhd_4")
-	private double bhd_4;
+	private java.lang.Double bhd_4;
 	
 	@Column(name="d_01_4")
-	private double d_01_4;
+	private java.lang.Double d_01_4;
 	
 	@Column(name="bhd_5")
-	private double bhd_5;
+	private java.lang.Double bhd_5;
 	
 	@Column(name="d_01_5")
-	private double d_01_5;
+	private java.lang.Double d_01_5;
 	
 	@Column(name="bhd_6")
-	private double bhd_6;
+	private java.lang.Double bhd_6;
 	
 	@Column(name="d_01_6")
-	private double d_01_6;
+	private java.lang.Double d_01_6;
 	
 	@Column(name="bhd_7")
-	private double bhd_7;
+	private java.lang.Double bhd_7;
 	
 	@Column(name="d_01_7")
-	private double d_01_7;
+	private java.lang.Double d_01_7;
 	
 	@Column(name="bhd_8")
-	private double bhd_8;
+	private java.lang.Double bhd_8;
 	
 	@Column(name="d_01_8")
-	private double d_01_8;
+	private java.lang.Double d_01_8;
 	
 	@Column(name="height")
-	private double height;
+	private java.lang.Double height;
 	
 	@Column(name="l_1")
-	private double l_1;
+	private java.lang.Double l_1;
 	
 	@Column(name="l_2")
-	private double l_2;
+	private java.lang.Double l_2;
 	
 	@Column(name="l_3")
-	private double l_3;
+	private java.lang.Double l_3;
 	
 	@Column(name="l_4")
-	private double l_4;
+	private java.lang.Double l_4;
 	
 	@Column(name="l_5")
-	private double l_5;
+	private java.lang.Double l_5;
 	
 	@Column(name="l_6")
-	private double l_6;
+	private java.lang.Double l_6;
 	
 	@Column(name="l_7")
-	private double l_7;
+	private java.lang.Double l_7;
 	
 	@Column(name="l_8")
-	private double l_8;
+	private java.lang.Double l_8;
 	
 	/**
 	 * Default constructor. Only used by Hibernate.
@@ -138,364 +138,364 @@ public class MeasurementValues {
 	/**
 	 * Returns the value of property 'numberOfSprouds'.
 	 */
-	public int getNumberOfSprouds() {
+	public java.lang.Integer getNumberOfSprouds() {
 		return numberOfSprouds;
 	}
 	
 	/**
 	 * Sets the value of property 'numberOfSprouds'.
 	 */
-	public void setNumberOfSprouds(int newValue) {
+	public void setNumberOfSprouds(java.lang.Integer newValue) {
 		this.numberOfSprouds = newValue;
 	}
 	
 	/**
 	 * Returns the value of property 'bhd_1'.
 	 */
-	public double getBhd_1() {
+	public java.lang.Double getBhd_1() {
 		return bhd_1;
 	}
 	
 	/**
 	 * Sets the value of property 'bhd_1'.
 	 */
-	public void setBhd_1(double newValue) {
+	public void setBhd_1(java.lang.Double newValue) {
 		this.bhd_1 = newValue;
 	}
 	
 	/**
 	 * Returns the value of property 'd_01_1'.
 	 */
-	public double getD_01_1() {
+	public java.lang.Double getD_01_1() {
 		return d_01_1;
 	}
 	
 	/**
 	 * Sets the value of property 'd_01_1'.
 	 */
-	public void setD_01_1(double newValue) {
+	public void setD_01_1(java.lang.Double newValue) {
 		this.d_01_1 = newValue;
 	}
 	
 	/**
 	 * Returns the value of property 'bhd_2'.
 	 */
-	public double getBhd_2() {
+	public java.lang.Double getBhd_2() {
 		return bhd_2;
 	}
 	
 	/**
 	 * Sets the value of property 'bhd_2'.
 	 */
-	public void setBhd_2(double newValue) {
+	public void setBhd_2(java.lang.Double newValue) {
 		this.bhd_2 = newValue;
 	}
 	
 	/**
 	 * Returns the value of property 'd_01_2'.
 	 */
-	public double getD_01_2() {
+	public java.lang.Double getD_01_2() {
 		return d_01_2;
 	}
 	
 	/**
 	 * Sets the value of property 'd_01_2'.
 	 */
-	public void setD_01_2(double newValue) {
+	public void setD_01_2(java.lang.Double newValue) {
 		this.d_01_2 = newValue;
 	}
 	
 	/**
 	 * Returns the value of property 'bhd_3'.
 	 */
-	public double getBhd_3() {
+	public java.lang.Double getBhd_3() {
 		return bhd_3;
 	}
 	
 	/**
 	 * Sets the value of property 'bhd_3'.
 	 */
-	public void setBhd_3(double newValue) {
+	public void setBhd_3(java.lang.Double newValue) {
 		this.bhd_3 = newValue;
 	}
 	
 	/**
 	 * Returns the value of property 'd_01_3'.
 	 */
-	public double getD_01_3() {
+	public java.lang.Double getD_01_3() {
 		return d_01_3;
 	}
 	
 	/**
 	 * Sets the value of property 'd_01_3'.
 	 */
-	public void setD_01_3(double newValue) {
+	public void setD_01_3(java.lang.Double newValue) {
 		this.d_01_3 = newValue;
 	}
 	
 	/**
 	 * Returns the value of property 'bhd_4'.
 	 */
-	public double getBhd_4() {
+	public java.lang.Double getBhd_4() {
 		return bhd_4;
 	}
 	
 	/**
 	 * Sets the value of property 'bhd_4'.
 	 */
-	public void setBhd_4(double newValue) {
+	public void setBhd_4(java.lang.Double newValue) {
 		this.bhd_4 = newValue;
 	}
 	
 	/**
 	 * Returns the value of property 'd_01_4'.
 	 */
-	public double getD_01_4() {
+	public java.lang.Double getD_01_4() {
 		return d_01_4;
 	}
 	
 	/**
 	 * Sets the value of property 'd_01_4'.
 	 */
-	public void setD_01_4(double newValue) {
+	public void setD_01_4(java.lang.Double newValue) {
 		this.d_01_4 = newValue;
 	}
 	
 	/**
 	 * Returns the value of property 'bhd_5'.
 	 */
-	public double getBhd_5() {
+	public java.lang.Double getBhd_5() {
 		return bhd_5;
 	}
 	
 	/**
 	 * Sets the value of property 'bhd_5'.
 	 */
-	public void setBhd_5(double newValue) {
+	public void setBhd_5(java.lang.Double newValue) {
 		this.bhd_5 = newValue;
 	}
 	
 	/**
 	 * Returns the value of property 'd_01_5'.
 	 */
-	public double getD_01_5() {
+	public java.lang.Double getD_01_5() {
 		return d_01_5;
 	}
 	
 	/**
 	 * Sets the value of property 'd_01_5'.
 	 */
-	public void setD_01_5(double newValue) {
+	public void setD_01_5(java.lang.Double newValue) {
 		this.d_01_5 = newValue;
 	}
 	
 	/**
 	 * Returns the value of property 'bhd_6'.
 	 */
-	public double getBhd_6() {
+	public java.lang.Double getBhd_6() {
 		return bhd_6;
 	}
 	
 	/**
 	 * Sets the value of property 'bhd_6'.
 	 */
-	public void setBhd_6(double newValue) {
+	public void setBhd_6(java.lang.Double newValue) {
 		this.bhd_6 = newValue;
 	}
 	
 	/**
 	 * Returns the value of property 'd_01_6'.
 	 */
-	public double getD_01_6() {
+	public java.lang.Double getD_01_6() {
 		return d_01_6;
 	}
 	
 	/**
 	 * Sets the value of property 'd_01_6'.
 	 */
-	public void setD_01_6(double newValue) {
+	public void setD_01_6(java.lang.Double newValue) {
 		this.d_01_6 = newValue;
 	}
 	
 	/**
 	 * Returns the value of property 'bhd_7'.
 	 */
-	public double getBhd_7() {
+	public java.lang.Double getBhd_7() {
 		return bhd_7;
 	}
 	
 	/**
 	 * Sets the value of property 'bhd_7'.
 	 */
-	public void setBhd_7(double newValue) {
+	public void setBhd_7(java.lang.Double newValue) {
 		this.bhd_7 = newValue;
 	}
 	
 	/**
 	 * Returns the value of property 'd_01_7'.
 	 */
-	public double getD_01_7() {
+	public java.lang.Double getD_01_7() {
 		return d_01_7;
 	}
 	
 	/**
 	 * Sets the value of property 'd_01_7'.
 	 */
-	public void setD_01_7(double newValue) {
+	public void setD_01_7(java.lang.Double newValue) {
 		this.d_01_7 = newValue;
 	}
 	
 	/**
 	 * Returns the value of property 'bhd_8'.
 	 */
-	public double getBhd_8() {
+	public java.lang.Double getBhd_8() {
 		return bhd_8;
 	}
 	
 	/**
 	 * Sets the value of property 'bhd_8'.
 	 */
-	public void setBhd_8(double newValue) {
+	public void setBhd_8(java.lang.Double newValue) {
 		this.bhd_8 = newValue;
 	}
 	
 	/**
 	 * Returns the value of property 'd_01_8'.
 	 */
-	public double getD_01_8() {
+	public java.lang.Double getD_01_8() {
 		return d_01_8;
 	}
 	
 	/**
 	 * Sets the value of property 'd_01_8'.
 	 */
-	public void setD_01_8(double newValue) {
+	public void setD_01_8(java.lang.Double newValue) {
 		this.d_01_8 = newValue;
 	}
 	
 	/**
 	 * Returns the value of property 'height'.
 	 */
-	public double getHeight() {
+	public java.lang.Double getHeight() {
 		return height;
 	}
 	
 	/**
 	 * Sets the value of property 'height'.
 	 */
-	public void setHeight(double newValue) {
+	public void setHeight(java.lang.Double newValue) {
 		this.height = newValue;
 	}
 	
 	/**
 	 * Returns the value of property 'l_1'.
 	 */
-	public double getL_1() {
+	public java.lang.Double getL_1() {
 		return l_1;
 	}
 	
 	/**
 	 * Sets the value of property 'l_1'.
 	 */
-	public void setL_1(double newValue) {
+	public void setL_1(java.lang.Double newValue) {
 		this.l_1 = newValue;
 	}
 	
 	/**
 	 * Returns the value of property 'l_2'.
 	 */
-	public double getL_2() {
+	public java.lang.Double getL_2() {
 		return l_2;
 	}
 	
 	/**
 	 * Sets the value of property 'l_2'.
 	 */
-	public void setL_2(double newValue) {
+	public void setL_2(java.lang.Double newValue) {
 		this.l_2 = newValue;
 	}
 	
 	/**
 	 * Returns the value of property 'l_3'.
 	 */
-	public double getL_3() {
+	public java.lang.Double getL_3() {
 		return l_3;
 	}
 	
 	/**
 	 * Sets the value of property 'l_3'.
 	 */
-	public void setL_3(double newValue) {
+	public void setL_3(java.lang.Double newValue) {
 		this.l_3 = newValue;
 	}
 	
 	/**
 	 * Returns the value of property 'l_4'.
 	 */
-	public double getL_4() {
+	public java.lang.Double getL_4() {
 		return l_4;
 	}
 	
 	/**
 	 * Sets the value of property 'l_4'.
 	 */
-	public void setL_4(double newValue) {
+	public void setL_4(java.lang.Double newValue) {
 		this.l_4 = newValue;
 	}
 	
 	/**
 	 * Returns the value of property 'l_5'.
 	 */
-	public double getL_5() {
+	public java.lang.Double getL_5() {
 		return l_5;
 	}
 	
 	/**
 	 * Sets the value of property 'l_5'.
 	 */
-	public void setL_5(double newValue) {
+	public void setL_5(java.lang.Double newValue) {
 		this.l_5 = newValue;
 	}
 	
 	/**
 	 * Returns the value of property 'l_6'.
 	 */
-	public double getL_6() {
+	public java.lang.Double getL_6() {
 		return l_6;
 	}
 	
 	/**
 	 * Sets the value of property 'l_6'.
 	 */
-	public void setL_6(double newValue) {
+	public void setL_6(java.lang.Double newValue) {
 		this.l_6 = newValue;
 	}
 	
 	/**
 	 * Returns the value of property 'l_7'.
 	 */
-	public double getL_7() {
+	public java.lang.Double getL_7() {
 		return l_7;
 	}
 	
 	/**
 	 * Sets the value of property 'l_7'.
 	 */
-	public void setL_7(double newValue) {
+	public void setL_7(java.lang.Double newValue) {
 		this.l_7 = newValue;
 	}
 	
 	/**
 	 * Returns the value of property 'l_8'.
 	 */
-	public double getL_8() {
+	public java.lang.Double getL_8() {
 		return l_8;
 	}
 	
 	/**
 	 * Sets the value of property 'l_8'.
 	 */
-	public void setL_8(double newValue) {
+	public void setL_8(java.lang.Double newValue) {
 		this.l_8 = newValue;
 	}
 	
