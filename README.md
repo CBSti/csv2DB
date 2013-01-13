@@ -7,6 +7,7 @@ Requirements
 ============
 
 * [HEDL - Hibernate Entity Description Language](http://www.hibernate-dsl.org/index.php/HEDL)
+  * The trunk of HEDL is required: [HEDL Trunk Update Site](http://www.devboost.org/hedl/update_trunk)
 * [Maven](http://www.apache.maven.org)
 * MySql Database
 * **Java 7** Runtime Environment
