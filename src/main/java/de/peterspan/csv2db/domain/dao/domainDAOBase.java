@@ -251,12 +251,12 @@ public abstract class domainDAOBase implements IDBOperationsBase {
 	/**
 	 * Creates a new DataSet using all read-only and all non-null properties.
 	 */
-	public DataSet createDataSet(final java.util.Date acquisitionDate, final int standingYear, final int rotation, final int treeType, final int repetition, final int treeNumber, final java.lang.String identNumber) {
+	public DataSet createDataSet(final java.util.Date acquisitionDate, final int standingYear, final int rotation, final int clone, final int repetition, final int treeNumber, final java.lang.String identNumber) {
 		final DataSet[] entity = new DataSet[1];
 		executeInTransaction(new ICommand() {
 			
 			public void execute(IDBOperations operations) {
-				entity[0] = operations.createDataSet(acquisitionDate, standingYear, rotation, treeType, repetition, treeNumber, identNumber);
+				entity[0] = operations.createDataSet(acquisitionDate, standingYear, rotation, clone, repetition, treeNumber, identNumber);
 			}
 		});
 		return entity[0];

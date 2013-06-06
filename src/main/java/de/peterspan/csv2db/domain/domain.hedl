@@ -11,7 +11,7 @@ DataSet {
 	Date acquisitionDate;
 	Int standingYear;
 	Int rotation;
-	Int treeType;
+	Int clone;
 	Int repetition;
 	Int treeNumber;
 	String identNumber;
@@ -21,7 +21,7 @@ DataSet {
 }
 
 MeasurementValues{
-	nullable Int numberOfSprouds;
+	nullable Int numberOfShoots;
 	nullable Double bhd_1;
 	nullable Double d_01_1;
 	
@@ -46,6 +46,24 @@ MeasurementValues{
 	nullable Double bhd_8;
 	nullable Double d_01_8;
 	
+	nullable Double bhd_9;
+	nullable Double d_01_9;
+	
+	nullable Double bhd_10;
+	nullable Double d_01_10;
+	
+	nullable Double bhd_11;
+	nullable Double d_01_11;
+
+	nullable Double bhd_12;
+	
+	nullable Double bhd_13;
+	
+	nullable Double bhd_14;
+	
+	nullable Double bhd_15;
+
+	
 	nullable Double height;
 	
 	nullable Double l_1;
@@ -56,8 +74,12 @@ MeasurementValues{
 	nullable Double l_6;
 	nullable Double l_7;
 	nullable Double l_8;
-	
-	
+	nullable Double l_9;
+	nullable Double l_10;
+	nullable Double l_11;
+	nullable Double l_12;
+	nullable Double l_13;
+		
 }
 
 

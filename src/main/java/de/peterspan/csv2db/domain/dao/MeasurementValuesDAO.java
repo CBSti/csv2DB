@@ -18,7 +18,7 @@ import de.peterspan.csv2db.domain.entities.MeasurementValues;
 public class MeasurementValuesDAO {
 	
 	public final static String FIELD__ID = getField(MeasurementValues.class, "id");
-	public final static String FIELD__NUMBEROFSPROUDS = getField(MeasurementValues.class, "numberOfSprouds");
+	public final static String FIELD__NUMBEROFSHOOTS = getField(MeasurementValues.class, "numberOfShoots");
 	public final static String FIELD__BHD_1 = getField(MeasurementValues.class, "bhd_1");
 	public final static String FIELD__D_01_1 = getField(MeasurementValues.class, "d_01_1");
 	public final static String FIELD__BHD_2 = getField(MeasurementValues.class, "bhd_2");
@@ -35,6 +35,16 @@ public class MeasurementValuesDAO {
 	public final static String FIELD__D_01_7 = getField(MeasurementValues.class, "d_01_7");
 	public final static String FIELD__BHD_8 = getField(MeasurementValues.class, "bhd_8");
 	public final static String FIELD__D_01_8 = getField(MeasurementValues.class, "d_01_8");
+	public final static String FIELD__BHD_9 = getField(MeasurementValues.class, "bhd_9");
+	public final static String FIELD__D_01_9 = getField(MeasurementValues.class, "d_01_9");
+	public final static String FIELD__BHD_10 = getField(MeasurementValues.class, "bhd_10");
+	public final static String FIELD__D_01_10 = getField(MeasurementValues.class, "d_01_10");
+	public final static String FIELD__BHD_11 = getField(MeasurementValues.class, "bhd_11");
+	public final static String FIELD__D_01_11 = getField(MeasurementValues.class, "d_01_11");
+	public final static String FIELD__BHD_12 = getField(MeasurementValues.class, "bhd_12");
+	public final static String FIELD__BHD_13 = getField(MeasurementValues.class, "bhd_13");
+	public final static String FIELD__BHD_14 = getField(MeasurementValues.class, "bhd_14");
+	public final static String FIELD__BHD_15 = getField(MeasurementValues.class, "bhd_15");
 	public final static String FIELD__HEIGHT = getField(MeasurementValues.class, "height");
 	public final static String FIELD__L_1 = getField(MeasurementValues.class, "l_1");
 	public final static String FIELD__L_2 = getField(MeasurementValues.class, "l_2");
@@ -44,6 +54,11 @@ public class MeasurementValuesDAO {
 	public final static String FIELD__L_6 = getField(MeasurementValues.class, "l_6");
 	public final static String FIELD__L_7 = getField(MeasurementValues.class, "l_7");
 	public final static String FIELD__L_8 = getField(MeasurementValues.class, "l_8");
+	public final static String FIELD__L_9 = getField(MeasurementValues.class, "l_9");
+	public final static String FIELD__L_10 = getField(MeasurementValues.class, "l_10");
+	public final static String FIELD__L_11 = getField(MeasurementValues.class, "l_11");
+	public final static String FIELD__L_12 = getField(MeasurementValues.class, "l_12");
+	public final static String FIELD__L_13 = getField(MeasurementValues.class, "l_13");
 	
 	/**
 	 * Creates a MeasurementValues using all read-only and all non-null properties.

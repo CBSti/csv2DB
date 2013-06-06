@@ -42,7 +42,7 @@ public class Location {
 	@Column(name="name")
 	private java.lang.String name;
 	
-	@Column(name="locationnumber")
+	@Column(name="locationnumber", unique=true)
 	private int locationNumber;
 	
 	@Column(name="institution")

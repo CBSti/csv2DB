@@ -33,8 +33,8 @@ public class MeasurementValues {
 	@GeneratedValue(strategy=GenerationType.TABLE, generator="MeasurementValuesIdGenerator")
 	private int id;
 
-	@Column(name="numberofsprouds")
-	private java.lang.Integer numberOfSprouds;
+	@Column(name="numberofshoots")
+	private java.lang.Integer numberOfShoots;
 	
 	@Column(name="bhd_1")
 	private java.lang.Double bhd_1;
@@ -84,6 +84,36 @@ public class MeasurementValues {
 	@Column(name="d_01_8")
 	private java.lang.Double d_01_8;
 	
+	@Column(name="bhd_9")
+	private java.lang.Double bhd_9;
+	
+	@Column(name="d_01_9")
+	private java.lang.Double d_01_9;
+	
+	@Column(name="bhd_10")
+	private java.lang.Double bhd_10;
+	
+	@Column(name="d_01_10")
+	private java.lang.Double d_01_10;
+	
+	@Column(name="bhd_11")
+	private java.lang.Double bhd_11;
+	
+	@Column(name="d_01_11")
+	private java.lang.Double d_01_11;
+	
+	@Column(name="bhd_12")
+	private java.lang.Double bhd_12;
+	
+	@Column(name="bhd_13")
+	private java.lang.Double bhd_13;
+	
+	@Column(name="bhd_14")
+	private java.lang.Double bhd_14;
+	
+	@Column(name="bhd_15")
+	private java.lang.Double bhd_15;
+	
 	@Column(name="height")
 	private java.lang.Double height;
 	
@@ -111,6 +141,21 @@ public class MeasurementValues {
 	@Column(name="l_8")
 	private java.lang.Double l_8;
 	
+	@Column(name="l_9")
+	private java.lang.Double l_9;
+	
+	@Column(name="l_10")
+	private java.lang.Double l_10;
+	
+	@Column(name="l_11")
+	private java.lang.Double l_11;
+	
+	@Column(name="l_12")
+	private java.lang.Double l_12;
+	
+	@Column(name="l_13")
+	private java.lang.Double l_13;
+	
 	/**
 	 * Default constructor. Only used by Hibernate.
 	 */
@@ -136,17 +181,17 @@ public class MeasurementValues {
 	}
 
 	/**
-	 * Returns the value of property 'numberOfSprouds'.
+	 * Returns the value of property 'numberOfShoots'.
 	 */
-	public java.lang.Integer getNumberOfSprouds() {
-		return numberOfSprouds;
+	public java.lang.Integer getNumberOfShoots() {
+		return numberOfShoots;
 	}
 	
 	/**
-	 * Sets the value of property 'numberOfSprouds'.
+	 * Sets the value of property 'numberOfShoots'.
 	 */
-	public void setNumberOfSprouds(java.lang.Integer newValue) {
-		this.numberOfSprouds = newValue;
+	public void setNumberOfShoots(java.lang.Integer newValue) {
+		this.numberOfShoots = newValue;
 	}
 	
 	/**
@@ -374,6 +419,146 @@ public class MeasurementValues {
 	}
 	
 	/**
+	 * Returns the value of property 'bhd_9'.
+	 */
+	public java.lang.Double getBhd_9() {
+		return bhd_9;
+	}
+	
+	/**
+	 * Sets the value of property 'bhd_9'.
+	 */
+	public void setBhd_9(java.lang.Double newValue) {
+		this.bhd_9 = newValue;
+	}
+	
+	/**
+	 * Returns the value of property 'd_01_9'.
+	 */
+	public java.lang.Double getD_01_9() {
+		return d_01_9;
+	}
+	
+	/**
+	 * Sets the value of property 'd_01_9'.
+	 */
+	public void setD_01_9(java.lang.Double newValue) {
+		this.d_01_9 = newValue;
+	}
+	
+	/**
+	 * Returns the value of property 'bhd_10'.
+	 */
+	public java.lang.Double getBhd_10() {
+		return bhd_10;
+	}
+	
+	/**
+	 * Sets the value of property 'bhd_10'.
+	 */
+	public void setBhd_10(java.lang.Double newValue) {
+		this.bhd_10 = newValue;
+	}
+	
+	/**
+	 * Returns the value of property 'd_01_10'.
+	 */
+	public java.lang.Double getD_01_10() {
+		return d_01_10;
+	}
+	
+	/**
+	 * Sets the value of property 'd_01_10'.
+	 */
+	public void setD_01_10(java.lang.Double newValue) {
+		this.d_01_10 = newValue;
+	}
+	
+	/**
+	 * Returns the value of property 'bhd_11'.
+	 */
+	public java.lang.Double getBhd_11() {
+		return bhd_11;
+	}
+	
+	/**
+	 * Sets the value of property 'bhd_11'.
+	 */
+	public void setBhd_11(java.lang.Double newValue) {
+		this.bhd_11 = newValue;
+	}
+	
+	/**
+	 * Returns the value of property 'd_01_11'.
+	 */
+	public java.lang.Double getD_01_11() {
+		return d_01_11;
+	}
+	
+	/**
+	 * Sets the value of property 'd_01_11'.
+	 */
+	public void setD_01_11(java.lang.Double newValue) {
+		this.d_01_11 = newValue;
+	}
+	
+	/**
+	 * Returns the value of property 'bhd_12'.
+	 */
+	public java.lang.Double getBhd_12() {
+		return bhd_12;
+	}
+	
+	/**
+	 * Sets the value of property 'bhd_12'.
+	 */
+	public void setBhd_12(java.lang.Double newValue) {
+		this.bhd_12 = newValue;
+	}
+	
+	/**
+	 * Returns the value of property 'bhd_13'.
+	 */
+	public java.lang.Double getBhd_13() {
+		return bhd_13;
+	}
+	
+	/**
+	 * Sets the value of property 'bhd_13'.
+	 */
+	public void setBhd_13(java.lang.Double newValue) {
+		this.bhd_13 = newValue;
+	}
+	
+	/**
+	 * Returns the value of property 'bhd_14'.
+	 */
+	public java.lang.Double getBhd_14() {
+		return bhd_14;
+	}
+	
+	/**
+	 * Sets the value of property 'bhd_14'.
+	 */
+	public void setBhd_14(java.lang.Double newValue) {
+		this.bhd_14 = newValue;
+	}
+	
+	/**
+	 * Returns the value of property 'bhd_15'.
+	 */
+	public java.lang.Double getBhd_15() {
+		return bhd_15;
+	}
+	
+	/**
+	 * Sets the value of property 'bhd_15'.
+	 */
+	public void setBhd_15(java.lang.Double newValue) {
+		this.bhd_15 = newValue;
+	}
+	
+	/**
 	 * Returns the value of property 'height'.
 	 */
 	public java.lang.Double getHeight() {
@@ -497,6 +682,76 @@ public class MeasurementValues {
 	 */
 	public void setL_8(java.lang.Double newValue) {
 		this.l_8 = newValue;
+	}
+	
+	/**
+	 * Returns the value of property 'l_9'.
+	 */
+	public java.lang.Double getL_9() {
+		return l_9;
+	}
+	
+	/**
+	 * Sets the value of property 'l_9'.
+	 */
+	public void setL_9(java.lang.Double newValue) {
+		this.l_9 = newValue;
+	}
+	
+	/**
+	 * Returns the value of property 'l_10'.
+	 */
+	public java.lang.Double getL_10() {
+		return l_10;
+	}
+	
+	/**
+	 * Sets the value of property 'l_10'.
+	 */
+	public void setL_10(java.lang.Double newValue) {
+		this.l_10 = newValue;
+	}
+	
+	/**
+	 * Returns the value of property 'l_11'.
+	 */
+	public java.lang.Double getL_11() {
+		return l_11;
+	}
+	
+	/**
+	 * Sets the value of property 'l_11'.
+	 */
+	public void setL_11(java.lang.Double newValue) {
+		this.l_11 = newValue;
+	}
+	
+	/**
+	 * Returns the value of property 'l_12'.
+	 */
+	public java.lang.Double getL_12() {
+		return l_12;
+	}
+	
+	/**
+	 * Sets the value of property 'l_12'.
+	 */
+	public void setL_12(java.lang.Double newValue) {
+		this.l_12 = newValue;
+	}
+	
+	/**
+	 * Returns the value of property 'l_13'.
+	 */
+	public java.lang.Double getL_13() {
+		return l_13;
+	}
+	
+	/**
+	 * Sets the value of property 'l_13'.
+	 */
+	public void setL_13(java.lang.Double newValue) {
+		this.l_13 = newValue;
 	}
 	
 }

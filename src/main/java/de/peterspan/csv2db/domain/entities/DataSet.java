@@ -48,8 +48,8 @@ public class DataSet {
 	@Column(name="rotation")
 	private int rotation;
 	
-	@Column(name="treetype")
-	private int treeType;
+	@Column(name="clone")
+	private int clone;
 	
 	@Column(name="repetition")
 	private int repetition;
@@ -81,12 +81,12 @@ public class DataSet {
 	/**
 	 * Constructor using all read-only and all non-nullable properties.
 	 */
-	public DataSet(java.util.Date acquisitionDate, int standingYear, int rotation, int treeType, int repetition, int treeNumber, java.lang.String identNumber) {
+	public DataSet(java.util.Date acquisitionDate, int standingYear, int rotation, int clone, int repetition, int treeNumber, java.lang.String identNumber) {
 		super();
 		this.acquisitionDate = acquisitionDate;
 		this.standingYear = standingYear;
 		this.rotation = rotation;
-		this.treeType = treeType;
+		this.clone = clone;
 		this.repetition = repetition;
 		this.treeNumber = treeNumber;
 		this.identNumber = identNumber;
@@ -152,17 +152,17 @@ public class DataSet {
 	}
 	
 	/**
-	 * Returns the value of property 'treeType'.
+	 * Returns the value of property 'clone'.
 	 */
-	public int getTreeType() {
-		return treeType;
+	public int getClone() {
+		return clone;
 	}
 	
 	/**
-	 * Sets the value of property 'treeType'.
+	 * Sets the value of property 'clone'.
 	 */
-	public void setTreeType(int newValue) {
-		this.treeType = newValue;
+	public void setClone(int newValue) {
+		this.clone = newValue;
 	}
 	
 	/**

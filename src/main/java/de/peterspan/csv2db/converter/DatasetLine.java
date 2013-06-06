@@ -49,7 +49,7 @@ public class DatasetLine extends AbstractDataLine{
 	/**
 	 * Baumart
 	 */
-	public static final int tree_type = 3;
+	public static final int clone = 3;
 
 	/**
 	 * Wiederholung
@@ -59,7 +59,7 @@ public class DatasetLine extends AbstractDataLine{
 	/**
 	 * Anzahl Höhentriebe
 	 */
-	public static final int number_of_sprouds = 5;
+	public static final int number_of_shoots = 5;
 
 	public static final int bhd_1 = 6;
 	public static final int d_01_1 = 7;
@@ -84,23 +84,44 @@ public class DatasetLine extends AbstractDataLine{
 
 	public static final int bhd_8 = 20;
 	public static final int d_01_8 = 21;
-
-	public static final int height = 22;
-
-	public static final int l_1 = 23;
-	public static final int l_2 = 24;
-	public static final int l_3 = 25;
-	public static final int l_4 = 26;
-	public static final int l_5 = 27;
-	public static final int l_6 = 28;
-	public static final int l_7 = 29;
-	public static final int l_8 = 30;
-
-	public static final int remark = 31;
-	public static final int location_name = 32;
-	public static final int measurement_date = 33;
 	
-	public static final int treeNumber = 34;
+	public static final int bhd_9 = 22;
+	public static final int d_01_9 = 23;
+	
+	public static final int bhd_10 = 24;
+	public static final int d_01_10 = 25;
+	
+	public static final int bhd_11 = 26;
+	public static final int d_01_11 = 27;
+	
+	public static final int bhd_12 = 28;
+	public static final int bhd_13 = 29;
+	public static final int bhd_14 = 30;
+	public static final int bhd_15 = 31;
+	
+	public static final int height = 32;
+
+	public static final int l_1 = 33;
+	public static final int l_2 = 34;
+	public static final int l_3 = 35;
+	public static final int l_4 = 36;
+	public static final int l_5 = 37;
+	public static final int l_6 = 38;
+	public static final int l_7 = 39;
+	public static final int l_8 = 40;
+	public static final int l_9 = 41;
+	public static final int l_10 = 42;
+	public static final int l_11 = 43;
+	public static final int l_12 = 44;
+	public static final int l_13 = 45;
+	
+	
+
+	public static final int remark = 46;
+	public static final int location_name = 47;
+	public static final int measurement_date = 48;
+	
+	public static final int treeNumber = 49;
 
 	// 17.11.2010
 	SimpleDateFormat dateFormat = new SimpleDateFormat("dd.MM.yyyy");
@@ -144,6 +165,34 @@ public class DatasetLine extends AbstractDataLine{
 		value = DatasetLine.string2double(dataValues.get(bhd_8));
 
 		values.setBhd_8(value);
+		
+		value = DatasetLine.string2double(dataValues.get(bhd_9));
+
+		values.setBhd_9(value);
+		
+		value = DatasetLine.string2double(dataValues.get(bhd_10));
+
+		values.setBhd_10(value);
+		
+		value = DatasetLine.string2double(dataValues.get(bhd_11));
+
+		values.setBhd_11(value);
+		
+		value = DatasetLine.string2double(dataValues.get(bhd_12));
+
+		values.setBhd_12(value);
+		
+		value = DatasetLine.string2double(dataValues.get(bhd_13));
+
+		values.setBhd_13(value);
+		
+		value = DatasetLine.string2double(dataValues.get(bhd_14));
+
+		values.setBhd_14(value);
+		
+		value = DatasetLine.string2double(dataValues.get(bhd_15));
+
+		values.setBhd_15(value);
 
 		value = DatasetLine.string2double(dataValues.get(d_01_1));
 
@@ -173,10 +222,22 @@ public class DatasetLine extends AbstractDataLine{
 
 		values.setD_01_7(value);
 
-		value = DatasetLine.string2double(dataValues.get(d_01_1));
+		value = DatasetLine.string2double(dataValues.get(d_01_8));
 
 		values.setD_01_8(value);
 
+		value = DatasetLine.string2double(dataValues.get(d_01_9));
+
+		values.setD_01_9(value);
+		
+		value = DatasetLine.string2double(dataValues.get(d_01_10));
+
+		values.setD_01_10(value);
+		
+		value = DatasetLine.string2double(dataValues.get(d_01_11));
+
+		values.setD_01_11(value);
+						
 		value = DatasetLine.string2double(dataValues.get(l_1));
 
 		values.setL_1(value);
@@ -213,10 +274,10 @@ public class DatasetLine extends AbstractDataLine{
 		System.out.print("Height "+value);
 		values.setHeight(value);
 
-		Integer numberOfSprouds = DatasetLine.string2int(dataValues
-				.get(number_of_sprouds));
+		Integer numberOfShoots = DatasetLine.string2int(dataValues
+				.get(number_of_shoots));
 
-		values.setNumberOfSprouds(numberOfSprouds);
+		values.setNumberOfShoots(numberOfShoots);
 
 		return values;
 	}
@@ -254,11 +315,11 @@ public class DatasetLine extends AbstractDataLine{
 		dataset.setRepetition(Integer.parseInt(dataValues.get(repetition)));
 		dataset.setRotation(Integer.parseInt(dataValues.get(rotation)));
 		dataset.setStandingYear(Integer.parseInt(dataValues.get(standing_year)));
-		dataset.setTreeType(Integer.parseInt(dataValues.get(tree_type)));
+		dataset.setClone(Integer.parseInt(dataValues.get(clone)));
 		dataset.setTreeNumber(Integer.parseInt(dataValues.get(treeNumber)));
 		
 		StringBuilder sb = new StringBuilder();
-		sb.append(dataset.getTreeType());
+		sb.append(dataset.getClone());
 		sb.append(".");
 		sb.append(dataset.getRepetition());
 		sb.append(" - ");

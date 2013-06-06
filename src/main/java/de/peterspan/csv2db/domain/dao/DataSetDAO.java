@@ -24,7 +24,7 @@ public class DataSetDAO {
 	public final static String FIELD__ACQUISITIONDATE = getField(DataSet.class, "acquisitionDate");
 	public final static String FIELD__STANDINGYEAR = getField(DataSet.class, "standingYear");
 	public final static String FIELD__ROTATION = getField(DataSet.class, "rotation");
-	public final static String FIELD__TREETYPE = getField(DataSet.class, "treeType");
+	public final static String FIELD__CLONE = getField(DataSet.class, "clone");
 	public final static String FIELD__REPETITION = getField(DataSet.class, "repetition");
 	public final static String FIELD__TREENUMBER = getField(DataSet.class, "treeNumber");
 	public final static String FIELD__IDENTNUMBER = getField(DataSet.class, "identNumber");
@@ -35,8 +35,8 @@ public class DataSetDAO {
 	/**
 	 * Creates a DataSet using all read-only and all non-null properties.
 	 */
-	public DataSet create(Session session, java.util.Date acquisitionDate, int standingYear, int rotation, int treeType, int repetition, int treeNumber, java.lang.String identNumber) {
-		DataSet newEntity = new DataSet(acquisitionDate, standingYear, rotation, treeType, repetition, treeNumber, identNumber);
+	public DataSet create(Session session, java.util.Date acquisitionDate, int standingYear, int rotation, int clone, int repetition, int treeNumber, java.lang.String identNumber) {
+		DataSet newEntity = new DataSet(acquisitionDate, standingYear, rotation, clone, repetition, treeNumber, identNumber);
 		session.save(newEntity);
 		return newEntity;
 	}
