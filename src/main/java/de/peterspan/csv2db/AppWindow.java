@@ -27,7 +27,6 @@ import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.net.URISyntaxException;
-import java.net.URL;
 import java.nio.channels.OverlappingFileLockException;
 
 import javax.swing.JFrame;
@@ -41,11 +40,6 @@ import javax.swing.UnsupportedLookAndFeelException;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-import org.hibernate.SessionFactory;
-import org.springframework.context.ApplicationContext;
-import org.springframework.context.support.ClassPathXmlApplicationContext;
-import org.springframework.stereotype.Component;
-import org.springframework.test.context.ContextConfiguration;
 
 import com.jgoodies.forms.builder.DefaultFormBuilder;
 import com.jgoodies.forms.builder.PanelBuilder;
@@ -56,7 +50,6 @@ import de.peterspan.csv2db.ui.MainPanel;
 import de.peterspan.csv2db.ui.about.AboutDialog;
 import de.peterspan.csv2db.ui.res.Icons;
 import de.peterspan.csv2db.ui.res.Messages;
-import de.peterspan.csv2db.util.ApplicationContextLoader;
 import de.peterspan.csv2db.util.DialogUtil;
 import de.peterspan.csv2db.util.SingleInstance;
 
