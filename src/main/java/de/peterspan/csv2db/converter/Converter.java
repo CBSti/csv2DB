@@ -37,34 +37,39 @@ public class Converter extends AbstractConverter {
 
 	public Converter(File inputFile) {
 		super(inputFile);
-	
+
 	}
 
 	public void readLine(String[] line, Session session) {
 		DatasetLine datasetLine = new DatasetLine(line);
-		DataSet dataset = datasetLine.getDataset();
-
-		session.saveOrUpdate(dataset);
-
-		Location loc = datasetLine.getLocation();
-
-		Location sessionLoc = locationDao.getByLocationNumber(session,
-				loc.getLocationNumber());
-
-		if (sessionLoc != null) {
-			dataset.setLocation(sessionLoc);
-			session.saveOrUpdate(dataset);
-		} else {
-			session.saveOrUpdate(loc);
-			dataset.setLocation(loc);
+		if(!datasetLine.isValid()){
+			return;
 		}
+		DataSet dataset = datasetLine.getDataset();
+		
+		if (dataset != null) {
+			session.saveOrUpdate(dataset);
 
-		MeasurementValues values = datasetLine.getValues();
+			Location loc = datasetLine.getLocation();
 
-		session.saveOrUpdate(values);
+			Location sessionLoc = locationDao.getByLocationNumber(session,
+					loc.getLocationNumber());
 
-		dataset.setMeasurementValues(values);
-		session.saveOrUpdate(dataset);
+			if (sessionLoc != null) {
+				dataset.setLocation(sessionLoc);
+				session.saveOrUpdate(dataset);
+			} else {
+				session.saveOrUpdate(loc);
+				dataset.setLocation(loc);
+			}
+
+			MeasurementValues values = datasetLine.getValues();
+
+			session.saveOrUpdate(values);
+
+			dataset.setMeasurementValues(values);
+			session.saveOrUpdate(dataset);
+		}
 
 	}
 
@@ -81,8 +86,8 @@ public class Converter extends AbstractConverter {
 			double progress = 0.0;
 			for (String[] line : allLines) {
 				progress = progress + increment;
-				setProgress((int)Math.round(progress));
-				
+				setProgress((int) Math.round(progress));
+
 				if (line[0].equals("locnumber")) {
 					continue;
 				}
@@ -95,11 +100,11 @@ public class Converter extends AbstractConverter {
 			session.flush();
 			tx.commit();
 		} catch (HibernateException he) {
-			if(tx != null){
+			if (tx != null) {
 				tx.rollback();
 			}
-		}finally{
-			if(session != null){
+		} finally {
+			if (session != null) {
 				session.close();
 			}
 		}

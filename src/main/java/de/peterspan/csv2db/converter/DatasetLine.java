@@ -314,7 +314,26 @@ public class DatasetLine extends AbstractDataLine{
 
 		return loc;
 	}
-
+	
+	/**
+	 * Checks if this dataset line is a valid line.
+	 * 
+	 * In particular a dataset line is invalid iff shoots is empty and remark is empty.
+	 * 
+	 * @return true if the dataset is valid
+	 */
+	public boolean isValid(){
+		String remarkValue = dataValues.get(remark);
+		Integer numberOfShoots = DatasetLine.string2int(dataValues.get(number_of_shoots));
+		
+		if((remarkValue == null || "".equals(remarkValue.trim())) && numberOfShoots == null){
+			//if remark is null or empty and if numberOfShoots is empty this dataset is more or less useless, so don't use it!
+			return false;
+		}
+		
+		return true;
+	}
+	
 	/**
 	 * Creates a plain Dataset object.
 	 * 
