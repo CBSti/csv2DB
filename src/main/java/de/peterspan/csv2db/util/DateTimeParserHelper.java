@@ -32,7 +32,7 @@ public class DateTimeParserHelper {
 	}
 
 	
-	public Date tryParseDate(String dateString){
+	public Date tryParseDate(String dateString) throws IllegalArgumentException{
 		DateTime date = formatter.parseDateTime(dateString);
 		return date.toDate();
 	}
