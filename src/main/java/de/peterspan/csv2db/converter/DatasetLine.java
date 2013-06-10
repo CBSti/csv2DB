@@ -269,6 +269,26 @@ public class DatasetLine extends AbstractDataLine{
 		value = DatasetLine.string2double(dataValues.get(l_8));
 
 		values.setL_8(value);
+		
+		value = DatasetLine.string2double(dataValues.get(l_9));
+
+		values.setL_9(value);
+
+		value = DatasetLine.string2double(dataValues.get(l_10));
+
+		values.setL_10(value);
+
+		value = DatasetLine.string2double(dataValues.get(l_11));
+
+		values.setL_11(value);
+
+		value = DatasetLine.string2double(dataValues.get(l_12));
+
+		values.setL_12(value);
+
+		value = DatasetLine.string2double(dataValues.get(l_13));
+
+		values.setL_13(value);
 
 		value = DatasetLine.string2double(dataValues.get(height));
 		System.out.print("Height "+value);
