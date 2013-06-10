@@ -29,6 +29,7 @@ import com.jidesoft.spinner.DateSpinner;
 import de.peterspan.csv2db.domain.entities.DataSet;
 import de.peterspan.csv2db.domain.entities.Location;
 import de.peterspan.csv2db.domain.entities.MeasurementValues;
+import de.peterspan.csv2db.util.DateTimeParserHelper;
 
 public class DatasetLine extends AbstractDataLine{
 
@@ -124,11 +125,14 @@ public class DatasetLine extends AbstractDataLine{
 	public static final int treeNumber = 49;
 
 	// 17.11.2010
+	@Deprecated
 	SimpleDateFormat dateFormat = new SimpleDateFormat("dd.MM.yyyy");
 
+	DateTimeParserHelper dateTimeParserHelper;
 
 	public DatasetLine(String[] values) {
 		super(values);
+		dateTimeParserHelper = DateTimeParserHelper.getInstance();
 	}
 
 	public MeasurementValues getValues() {
@@ -324,9 +328,9 @@ public class DatasetLine extends AbstractDataLine{
 
 		Date date = null;
 		try {
-			date = dateFormat.parse(dataValues.get(measurement_date));
+			date = dateTimeParserHelper.tryParseDate(dataValues.get(measurement_date));
 			dataset.setAcquisitionDate(date);
-		} catch (ParseException e) {
+		} catch (IllegalArgumentException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
