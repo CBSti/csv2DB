@@ -83,7 +83,7 @@ public class Converter extends AbstractConverter {
 				progress = progress + increment;
 				setProgress((int)Math.round(progress));
 				
-				if (line[0].equals("Standort-Nr.")) {
+				if (line[0].equals("locnumber")) {
 					continue;
 				}
 				if (line[0].equals("")) {

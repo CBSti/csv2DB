@@ -1,0 +1,6 @@
+hsqldb.reconfig_logging=false
+jdbc.driver.className=com.mysql.jdbc.Driver
+jdbc.url=jdbc:mysql://localhost:3306/csv_db
+jdbc.username=root
+jdbc.password=
+jdbc.hibernate.dialect=org.hibernate.dialect.MySQLInnoDBDialect
