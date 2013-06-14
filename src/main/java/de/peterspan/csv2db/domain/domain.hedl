@@ -18,6 +18,7 @@ DataSet {
 	nullable Location location; 
 	nullable MeasurementValues measurementValues;
 	nullable LongString remark;
+	nullable String inputError;
 }
 
 MeasurementValues{

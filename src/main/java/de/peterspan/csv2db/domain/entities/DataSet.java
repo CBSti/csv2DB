@@ -71,6 +71,9 @@ public class DataSet {
 	@Column(name="remark", length=100000)
 	private java.lang.String remark;
 	
+	@Column(name="inputerror")
+	private java.lang.String inputError;
+	
 	/**
 	 * Default constructor. Only used by Hibernate.
 	 */
@@ -247,6 +250,20 @@ public class DataSet {
 	 */
 	public void setRemark(java.lang.String newValue) {
 		this.remark = newValue;
+	}
+	
+	/**
+	 * Returns the value of property 'inputError'.
+	 */
+	public java.lang.String getInputError() {
+		return inputError;
+	}
+	
+	/**
+	 * Sets the value of property 'inputError'.
+	 */
+	public void setInputError(java.lang.String newValue) {
+		this.inputError = newValue;
 	}
 	
 }

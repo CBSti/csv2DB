@@ -31,6 +31,7 @@ public class DataSetDAO {
 	public final static String FIELD__LOCATION = getField(DataSet.class, "location");
 	public final static String FIELD__MEASUREMENTVALUES = getField(DataSet.class, "measurementValues");
 	public final static String FIELD__REMARK = getField(DataSet.class, "remark");
+	public final static String FIELD__INPUTERROR = getField(DataSet.class, "inputError");
 	
 	/**
 	 * Creates a DataSet using all read-only and all non-null properties.
@@ -113,6 +114,7 @@ public class DataSetDAO {
 		Disjunction disjunction = Restrictions.disjunction();
 		disjunction.add(Restrictions.like(FIELD__IDENTNUMBER, _searchString.trim(), MatchMode.ANYWHERE));
 		disjunction.add(Restrictions.like(FIELD__REMARK, _searchString.trim(), MatchMode.ANYWHERE));
+		disjunction.add(Restrictions.like(FIELD__INPUTERROR, _searchString.trim(), MatchMode.ANYWHERE));
 		criteria = criteria.add(disjunction);
 		criteria = criteria.setMaxResults(_maxResults);
 		@SuppressWarnings("unchecked")
@@ -130,6 +132,7 @@ public class DataSetDAO {
 		Disjunction disjunction = Restrictions.disjunction();
 		disjunction.add(Restrictions.like(FIELD__IDENTNUMBER, _searchString.trim(), MatchMode.ANYWHERE));
 		disjunction.add(Restrictions.like(FIELD__REMARK, _searchString.trim(), MatchMode.ANYWHERE));
+		disjunction.add(Restrictions.like(FIELD__INPUTERROR, _searchString.trim(), MatchMode.ANYWHERE));
 		criteria = criteria.add(disjunction);
 		criteria = criteria.setMaxResults(_maxResults);
 		@SuppressWarnings("unchecked")
@@ -147,6 +150,7 @@ public class DataSetDAO {
 		Disjunction disjunction = Restrictions.disjunction();
 		disjunction.add(Restrictions.like(FIELD__IDENTNUMBER, _searchString.trim(), MatchMode.ANYWHERE));
 		disjunction.add(Restrictions.like(FIELD__REMARK, _searchString.trim(), MatchMode.ANYWHERE));
+		disjunction.add(Restrictions.like(FIELD__INPUTERROR, _searchString.trim(), MatchMode.ANYWHERE));
 		criteria = criteria.add(disjunction);
 		criteria = criteria.setMaxResults(_maxResults);
 		@SuppressWarnings("unchecked")
