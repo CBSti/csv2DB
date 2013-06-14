@@ -64,7 +64,9 @@ public class Converter extends AbstractConverter {
 			}
 
 			MeasurementValues values = datasetLine.getValues();
-
+			
+			dataset.setInputError(datasetLine.getInputErrors());
+			
 			session.saveOrUpdate(values);
 
 			dataset.setMeasurementValues(values);
@@ -89,6 +91,8 @@ public class Converter extends AbstractConverter {
 				setProgress((int) Math.round(progress));
 
 				if (line[0].equals("locnumber")) {
+					//This is the header! Create a single instance header object
+					Header.getInstance().init(line);
 					continue;
 				}
 				if (line[0].equals("")) {
