@@ -19,32 +19,15 @@
 package de.peterspan.csv2db.converter.location;
 
 import java.io.File;
-import java.io.FileReader;
-import java.io.IOException;
-import java.net.URL;
-import java.util.ArrayList;
 import java.util.List;
-
-import javax.annotation.Resource;
-import javax.swing.SwingWorker;
 
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
-import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.ApplicationContext;
 import org.springframework.stereotype.Component;
 
-import au.com.bytecode.opencsv.CSVReader;
-
-import de.peterspan.csv2db.AppWindow;
 import de.peterspan.csv2db.converter.AbstractConverter;
-import de.peterspan.csv2db.domain.LocationDAOImpl;
-import de.peterspan.csv2db.domain.entities.DataSet;
 import de.peterspan.csv2db.domain.entities.Location;
-import de.peterspan.csv2db.domain.entities.MeasurementValues;
-import de.peterspan.csv2db.util.ApplicationContextLoader;
 
 @Component
 public class LocationConverter extends AbstractConverter {

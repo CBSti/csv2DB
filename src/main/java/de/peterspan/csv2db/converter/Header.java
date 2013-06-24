@@ -61,6 +61,7 @@ public class Header {
 		return col_header.get(Integer.valueOf(column));
 	}
 
+	@SuppressWarnings("serial")
 	public static class NotYetInitializedException extends Exception {
 
 	}

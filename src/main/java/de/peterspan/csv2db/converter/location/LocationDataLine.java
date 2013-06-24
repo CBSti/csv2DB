@@ -18,9 +18,6 @@
  */
 package de.peterspan.csv2db.converter.location;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import de.peterspan.csv2db.converter.AbstractDataLine;
 import de.peterspan.csv2db.domain.entities.Location;
 

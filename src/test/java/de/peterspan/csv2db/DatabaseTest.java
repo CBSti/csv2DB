@@ -1,12 +1,8 @@
 package de.peterspan.csv2db;
 
-import java.sql.Connection;
-import java.sql.SQLException;
-
 import javax.annotation.Resource;
 import javax.sql.DataSource;
 
-import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.junit.Test;
 import org.junit.runner.RunWith;

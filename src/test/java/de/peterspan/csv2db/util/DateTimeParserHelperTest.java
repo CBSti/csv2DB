@@ -22,6 +22,7 @@ public class DateTimeParserHelperTest {
 	@Test(expected = IllegalArgumentException.class)
 	public void exception(){
 		DateTimeParserHelper helper = DateTimeParserHelper.getInstance();
+		@SuppressWarnings("unused")
 		Date date1 = helper.tryParseDate("ffasf");
 	}
 }
