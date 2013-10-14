@@ -53,7 +53,7 @@
 			<prop key="hibernate.connection.driver_class">${jdbc.driver.className}</prop>
 			<prop key="hibernate.connection.username">${jdbc.username}</prop>
 			<prop key="hibernate.connection.password">${jdbc.password}</prop>
-           
+           	<prop key="hibernate.hbm2ddl.auto">${hibernate.hbm2ddl.auto}</prop>
             <prop key="hibernate.dialect">${jdbc.hibernate.dialect}</prop>
          </props>
       </property>

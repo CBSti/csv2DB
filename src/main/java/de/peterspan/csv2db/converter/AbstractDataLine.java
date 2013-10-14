@@ -33,7 +33,9 @@ public abstract class AbstractDataLine {
 			value = value.replace(",", ".");
 			return Double.parseDouble(value);
 		} catch (NumberFormatException nfe) {
-			log.error("Could not convert string " + value + " to double.", nfe);
+			if(!value.isEmpty()) {
+				log.error("Could not convert string " + value + " to double.", nfe);
+			}
 			return null;
 		}
 	}
@@ -42,7 +44,9 @@ public abstract class AbstractDataLine {
 		try {
 			return Integer.parseInt(value);
 		} catch (NumberFormatException nfe) {
-			log.error("Could not convert string " + value + " to integer.", nfe);
+			if(!value.isEmpty()) {
+				log.error("Could not convert string " + value + " to integer.", nfe);
+			}
 			return null;
 		}
 	}
