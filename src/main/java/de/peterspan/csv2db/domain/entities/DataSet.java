@@ -12,30 +12,16 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
-import org.hibernate.annotations.GenericGenerator;
-import org.hibernate.annotations.Parameter;
-
 @Entity
-@Table(name = "dataset"
-)
+@Table(name = "dataset")
 /*
  * This class is generated from the entity 'DataSet' defined in the HEDL model.
  * Note: Any change made to this class will be overridden.
  */
 public class DataSet {
 	
-	@GenericGenerator(name="DataSetIdGenerator", strategy="org.hibernate.id.MultipleHiLoPerTableGenerator",
-	  parameters = {
-	    @Parameter(name="table", value="IdentityGenerator"),
-	    @Parameter(name="primary_key_column", value="sequence_name"),
-	    @Parameter(name="primary_key_value", value="DataSet"),
-	    @Parameter(name="value_column", value="next_hi_value"),
-	    @Parameter(name="primary_key_length", value="100"),
-	    @Parameter(name="max_lo", value="1000")
-	  }
-	)
 	@Id 
-	@GeneratedValue(strategy=GenerationType.TABLE, generator="DataSetIdGenerator")
+	@GeneratedValue(strategy=GenerationType.AUTO)
 	private int id;
 
 	@Temporal(TemporalType.TIMESTAMP)
@@ -68,14 +54,14 @@ public class DataSet {
 	@JoinColumn(name="measurementvalues", nullable=true)
 	private MeasurementValues measurementValues;
 	
-	@Column(name="remark", length=100000)
+	@Column(name="remark", length=100000, nullable=true)
 	private java.lang.String remark;
 	
-	@Column(name="inputerror")
+	@Column(name="inputerror", nullable=true)
 	private java.lang.String inputError;
 	
 	/**
-	 * Default constructor. Only used by Hibernate.
+	 * Default constructor. Only used by JPA.
 	 */
 	public DataSet() {
 		super();
@@ -266,4 +252,29 @@ public class DataSet {
 		this.inputError = newValue;
 	}
 	
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + getId();
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj) {
+			return true;
+		}
+		if (obj == null) {
+			return false;
+		}
+		if (getClass() != obj.getClass()) {
+			return false;
+		}
+		DataSet other = (DataSet) obj;
+		if (getId() != other.getId()) {
+			return false;
+		}
+		return true;
+	}
 }

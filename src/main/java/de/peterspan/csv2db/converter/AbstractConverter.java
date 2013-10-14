@@ -26,15 +26,16 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.annotation.Resource;
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
 import javax.swing.SwingWorker;
 
-import org.hibernate.Session;
-import org.hibernate.SessionFactory;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 
 import au.com.bytecode.opencsv.CSVReader;
-
 import de.peterspan.csv2db.AppWindow;
 import de.peterspan.csv2db.domain.DatasetDAOImpl;
 import de.peterspan.csv2db.domain.LocationDAOImpl;
@@ -43,11 +44,15 @@ import de.peterspan.csv2db.util.ApplicationContextLoader;
 
 public abstract class AbstractConverter extends SwingWorker<Void, Void> {
 
+	private static final Log log = LogFactory.getLog(AbstractConverter.class);
+	
 	@Autowired
 	protected ApplicationContext applicationContext;
 
 	@Resource
-	protected SessionFactory sessionFactory;
+	protected EntityManagerFactory entityManagerFactory;
+	
+	protected EntityManager entityManager;
 
 	@Resource
 	protected LocationDAOImpl locationDao;
@@ -68,9 +73,10 @@ public abstract class AbstractConverter extends SwingWorker<Void, Void> {
 		super();
 		injectContext();
 		this.inputFile = inputFile;
+		entityManager = entityManagerFactory.createEntityManager();
 	}
 
-	public abstract void readLine(String[] line, Session session);
+	public abstract void readLine(String[] line);
 
 	void injectContext() {
 		URL resource = AppWindow.class.getResource("app-config.xml");
@@ -86,7 +92,7 @@ public abstract class AbstractConverter extends SwingWorker<Void, Void> {
 			csvReader = new CSVReader(fileReader, ';');
 			allLines = csvReader.readAll();
 		} catch (IOException ioe) {
-
+			log.error("An error occured while trying to read the input file.", ioe);
 		} finally {
 			if (csvReader != null)
 				csvReader.close();

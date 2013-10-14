@@ -21,9 +21,11 @@ package de.peterspan.csv2db.converter;
 import java.io.File;
 import java.util.List;
 
+import javax.persistence.EntityTransaction;
+
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import org.hibernate.HibernateException;
-import org.hibernate.Session;
-import org.hibernate.Transaction;
 
 import de.peterspan.csv2db.domain.entities.DataSet;
 import de.peterspan.csv2db.domain.entities.Location;
@@ -31,6 +33,8 @@ import de.peterspan.csv2db.domain.entities.MeasurementValues;
 
 public class Converter extends AbstractConverter {
 
+	private static final Log log = LogFactory.getLog(Converter.class);
+	
 	public Converter() {
 		super();
 	};
@@ -40,7 +44,7 @@ public class Converter extends AbstractConverter {
 
 	}
 
-	public void readLine(String[] line, Session session) {
+	public void readLine(String[] line) {
 		DatasetLine datasetLine = new DatasetLine(line);
 		if(!datasetLine.isValid()){
 			return;
@@ -48,40 +52,39 @@ public class Converter extends AbstractConverter {
 		DataSet dataset = datasetLine.getDataset();
 		
 		if (dataset != null) {
-			session.saveOrUpdate(dataset);
+			entityManager.persist(dataset);
 
 			Location loc = datasetLine.getLocation();
-
-			Location sessionLoc = locationDao.getByLocationNumber(session,
-					loc.getLocationNumber());
-
-			if (sessionLoc != null) {
+			
+			Location sessionLoc = locationDao.getByLocationNumber(entityManager, loc.getLocationNumber());
+			
+			if(sessionLoc != null) {
 				dataset.setLocation(sessionLoc);
-				session.saveOrUpdate(dataset);
+				entityManager.refresh(dataset);
 			} else {
-				session.saveOrUpdate(loc);
+				entityManager.persist(loc);
 				dataset.setLocation(loc);
 			}
-
+			
+			
 			MeasurementValues values = datasetLine.getValues();
 			
 			dataset.setInputError(datasetLine.getInputErrors());
 			
-			session.saveOrUpdate(values);
+			entityManager.persist(values);
 
 			dataset.setMeasurementValues(values);
-			session.saveOrUpdate(dataset);
+			entityManager.refresh(dataset);
 		}
 
 	}
 
 	@Override
 	protected Void doInBackground() throws Exception {
-		Session session = null;
-		Transaction tx = null;
+		EntityTransaction tx = null;
 		try {
-			session = sessionFactory.openSession();
-			tx = session.beginTransaction();
+			tx = entityManager.getTransaction();
+			tx.begin();
 			List<String[]> allLines = readFile();
 
 			double increment = 100.0 / allLines.size();
@@ -98,20 +101,20 @@ public class Converter extends AbstractConverter {
 				if (line[0].equals("")) {
 					continue;
 				}
-				readLine(line, session);
+				readLine(line);
 			}
 
-			session.flush();
+
+			entityManager.flush();
 			tx.commit();
+			
 		} catch (HibernateException he) {
+			log.error("An error occured. Tx will be rolledback!", he);
 			if (tx != null) {
 				tx.rollback();
 			}
-		} finally {
-			if (session != null) {
-				session.close();
-			}
-		}
+		} 
+		
 		return null;
 	}
 

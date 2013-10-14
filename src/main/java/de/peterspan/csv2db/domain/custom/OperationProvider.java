@@ -1,6 +1,6 @@
 package de.peterspan.csv2db.domain.custom;
 
-import org.hibernate.Session;
+import javax.persistence.EntityManager;
 
 import de.peterspan.csv2db.domain.dao.OperationProviderBase;
 
@@ -8,8 +8,8 @@ import de.peterspan.csv2db.domain.dao.OperationProviderBase;
 // will be preserved.
 public class OperationProvider extends OperationProviderBase implements IDBOperations {
 
-	public OperationProvider(Session session) {
-		super(session);
+	public OperationProvider(EntityManager em) {
+		super(em);
 	}
 
 }

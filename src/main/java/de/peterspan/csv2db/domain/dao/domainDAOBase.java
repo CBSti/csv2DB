@@ -1,19 +1,17 @@
 package de.peterspan.csv2db.domain.dao;
 
 import java.io.IOException;
+import java.io.InputStream;
 import java.util.ArrayList;
+import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Properties;
 
-import org.hibernate.HibernateException;
-import org.hibernate.Session;
-import org.hibernate.SessionFactory;
-import org.hibernate.Transaction;
-import org.hibernate.TransactionException;
-import org.hibernate.cfg.Configuration;
-import org.hibernate.stat.Statistics;
-import org.hibernate.tool.hbm2ddl.SchemaExport;
-import org.hibernate.tool.hbm2ddl.SchemaUpdate;
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.EntityTransaction;
+import javax.persistence.Persistence;
 
 import de.peterspan.csv2db.domain.custom.IDBOperations;
 import de.peterspan.csv2db.domain.custom.OperationProvider;
@@ -24,7 +22,13 @@ import de.peterspan.csv2db.domain.entities.MeasurementValues;
 // this class is generated. any change will be overridden.
 public abstract class domainDAOBase implements IDBOperationsBase {
 	
-	private static SessionFactory sessionFactory;
+	public final static Class<?>[] ENTITY_CLASSES = new Class<?>[] {
+		Location.class,
+		DataSet.class,
+		MeasurementValues.class,
+	};
+
+	private static EntityManagerFactory entityManagerFactory;
 	
 	private Class<?> contextClass;
 
@@ -34,120 +38,191 @@ public abstract class domainDAOBase implements IDBOperationsBase {
 	
 	/**
 	 * Creates a new DAO that uses the given context class to load the
-	 * Hibernate configuration 'hibernate.properties' using 
+	 * JPA configuration file 'persistence.properties' using 
 	 * Class.getResourceAsStream().
 	 */
 	public domainDAOBase(Class<?> contextClass) {
 		this.contextClass = contextClass;
 	}
 	
-	private void configure() throws HibernateException {
-		Configuration configuration = getConfiguration();
-		//configuration.setProperty("hibernate.show_sql", "true");
-		sessionFactory = configuration.buildSessionFactory();
-	}
-
-	private Configuration getConfiguration() {
-		Configuration configuration = new Configuration();
-		configuration = configuration.addAnnotatedClass(Location.class);
-		configuration = configuration.addAnnotatedClass(DataSet.class);
-		configuration = configuration.addAnnotatedClass(MeasurementValues.class);
-		if (contextClass != null) {
-			Properties properties = new Properties();
-			try {
-				properties.load(contextClass.getResourceAsStream("hibernate.properties"));
-			} catch(IOException ioe) {
-				throw new RuntimeException("Can't find hibernate.properties next to context class.");
-			}
-			configuration.setProperties(properties);
-		}
-		return configuration;
+	/**
+	 * Returns the context class that was used to load the JPA configuration
+	 * file.
+	 */
+	public Class<?> getContextClass() {
+		return contextClass;
 	}
 	
-	protected SessionFactory getSessionFactory() {
+	/**
+	 * Returns the name of the service provider that is defined in the
+	 * persistence.xml file.
+	 */
+	public String getServiceName() {
+		return "Service";
+	}
+	
+	protected Map<Object, Object> getPersistenceProperties() {
+		Map<Object, Object> properties = new LinkedHashMap<Object, Object>();
+		if (contextClass != null) {
+			InputStream stream = contextClass.getResourceAsStream("persistence.properties");
+			if (stream != null) {
+				try {
+					Properties loadedProperties = new Properties();
+					loadedProperties.load(stream);
+					properties.putAll(loadedProperties);
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+			}
+		}
+		return properties;
+	}
+	
+	protected void configure() {
+		Map<Object, Object> properties = getPersistenceProperties();
+		entityManagerFactory = Persistence.createEntityManagerFactory(getServiceName(), properties);
+	}
+
+	protected EntityManagerFactory getEntityManagerFactory() {
 		synchronized (domainDAOBase.class) {
-			if (sessionFactory == null) {
+			if (entityManagerFactory == null) {
 				configure();
 			}
-			return sessionFactory;
+			return entityManagerFactory;
 		}
+	}
+	
+	/**
+	 * This method can be overridden if the DAO is used in a managed
+	 * environment. In this case the injected EntityManager can be
+	 * returned. By default this method returns null.
+	 */
+	protected EntityManager getEntityManager() {
+		return null;
+	}
+	
+	/**
+	 * This method is only used if the DAO is used in an unmanaged
+	 * environment. In this case the a new EntityManage is created
+	 * using the EntityManagerFactory.
+	 */
+	protected EntityManager createEntityManager() {
+		return getEntityManagerFactory().createEntityManager();
 	}
 	
 	/**
 	 * This method is deprecated. It is not meant
 	 * to be used on the DAO directly. 
-	 * Use OperationProvider.update(Object entity) instead.
+	 * Use OperationProvider.flush() instead.
 	 */
 	@Deprecated
-	public void update(Object entity) {
+	public void flush() {
 	}
 	
-	public void createSchema() throws HibernateException {
-		SchemaExport schemaExport = new SchemaExport(getConfiguration());
-		schemaExport.setFormat(true);
-		schemaExport.create(false, false);
+				
+	/**
+	 * This method is deprecated. It is not meant
+	 * to be used on the DAO directly. 
+	 * Use OperationProvider.merge(Location entity) instead.
+	 */
+	@Deprecated
+	public void merge(Location entity) {
 	}
 
-	public void updateSchema() {
-		SchemaUpdate update = new SchemaUpdate(getConfiguration());
-		update.execute(true, true);
-		List<?> exceptions = update.getExceptions();
-		for (Object object : exceptions) {
-			System.err.println("Exception while updating schema " + object);
-		}
+	/**
+	 * This method is deprecated. It is not meant
+	 * to be used on the DAO directly. 
+	 * Use OperationProvider.merge(DataSet entity) instead.
+	 */
+	@Deprecated
+	public void merge(DataSet entity) {
 	}
-	
+
+	/**
+	 * This method is deprecated. It is not meant
+	 * to be used on the DAO directly. 
+	 * Use OperationProvider.merge(MeasurementValues entity) instead.
+	 */
+	@Deprecated
+	public void merge(MeasurementValues entity) {
+	}
+
 	public void executeInTransaction(ICommand command) {
 		executeInTransaction(command, true);
 	}
 	
-	private void executeInTransaction(ICommand command, boolean retry) {
+	protected void executeInTransaction(ICommand command, boolean retry) {
 		boolean successful = false;
-		boolean closed = false;
 		
-		Session session = getSessionFactory().openSession();
-		Transaction tx = null;
-		try {
-			tx = session.beginTransaction();
-			command.execute(new OperationProvider(session));
-			tx.commit();
-			successful = true;
-		} catch (Exception e) {
-			handleException(e, retry);
-			if (tx != null) {
-				try {
-					tx.rollback();
-				} catch (TransactionException te) {
-					handleException(te, retry);
-				}
-			}
-		} finally {
+		EntityManager entityManager = getEntityManager();
+		if (entityManager != null) {
+			command.execute(new OperationProvider(entityManager));
+		} else {
+			entityManager = createEntityManager();
+			EntityTransaction tx = entityManager.getTransaction();
 			try {
-				session.close();
-				closed = true;
-			} catch (HibernateException he) {
-				handleException(he, retry);
+				tx.begin();
+				command.execute(new OperationProvider(entityManager));
+				tx.commit();
+				successful = true;
+			} catch (Throwable e) {
+				if (tx != null && tx.isActive()) {
+					tx.rollback();
+				}
+				handleException(e, retry);
+			} finally {
+				entityManager.close();
+			}
+			
+			if (!successful && retry) {
+				// retry once
+				executeInTransaction(command, false);
 			}
 		}
-		
-		if ((!successful || !closed) && retry) {
-			// retry once
-			executeInTransaction(command, false);
+	}
+	
+	public <ResultType> ResultType executeInTransaction(IFunction<ResultType> function) {
+		return executeInTransaction(function, true);
+	}
+	
+	protected <ResultType> ResultType executeInTransaction(IFunction<ResultType> function, boolean retry) {
+		boolean successful = false;
+		ResultType result = null;
+		EntityManager entityManager = getEntityManager();
+		if (entityManager != null) {
+			result = function.execute(new OperationProvider(entityManager));
+		} else {
+			entityManager = createEntityManager();
+			EntityTransaction tx = entityManager.getTransaction();
+			try {
+				tx.begin();
+				result = function.execute(new OperationProvider(entityManager));
+				tx.commit();
+				successful = true;
+			} catch (Throwable e) {
+				if (tx != null && tx.isActive()) {
+					tx.rollback();
+				}
+				handleException(e, retry);
+			} finally {
+				entityManager.close();
+			}
+			
+			if (!successful && retry) {
+				// retry once
+				return executeInTransaction(function, false);
+			}
 		}
+		return result;
 	}
 	
-	public abstract void handleException(Exception e, boolean retry);
-	
-	public Statistics getStatistics() {
-		Statistics statistics = sessionFactory.getStatistics();
-		return statistics;
-	}
+	public abstract void handleException(Throwable e, boolean retry);
 	
 	public void tearDown() {
 		synchronized (domainDAOBase.class) {
-			if (sessionFactory != null) {
-				sessionFactory.close();
-				sessionFactory = null;
+			if (entityManagerFactory != null) {
+				entityManagerFactory.close();
+				entityManagerFactory = null;
 			}
 		}
 	}
@@ -223,7 +298,7 @@ public abstract class domainDAOBase implements IDBOperationsBase {
 	}
 	
 	/**
-	 * Deletes a Location.
+	 * Deletes the given Location.
 	 */
 	public void delete(final Location entity) {
 		executeInTransaction(new ICommand() {
@@ -361,35 +436,7 @@ public abstract class domainDAOBase implements IDBOperationsBase {
 	}
 	
 	/**
-	 * Searches for entities of type DataSet.
-	 */
-	public List<DataSet> searchDataSetWithLocation(final Location location, final String _searchString, final int _maxResults) {
-		final List<DataSet> entities = new ArrayList<DataSet>();
-		executeInTransaction(new ICommand() {
-			
-			public void execute(IDBOperations operations) {
-				entities.addAll(operations.searchDataSetWithLocation(location, _searchString, _maxResults));
-			}
-		});
-		return entities;
-	}
-	
-	/**
-	 * Searches for entities of type DataSet.
-	 */
-	public List<DataSet> searchDataSetWithMeasurementValues(final MeasurementValues measurementValues, final String _searchString, final int _maxResults) {
-		final List<DataSet> entities = new ArrayList<DataSet>();
-		executeInTransaction(new ICommand() {
-			
-			public void execute(IDBOperations operations) {
-				entities.addAll(operations.searchDataSetWithMeasurementValues(measurementValues, _searchString, _maxResults));
-			}
-		});
-		return entities;
-	}
-	
-	/**
-	 * Deletes a DataSet.
+	 * Deletes the given DataSet.
 	 */
 	public void delete(final DataSet entity) {
 		executeInTransaction(new ICommand() {
@@ -495,7 +542,7 @@ public abstract class domainDAOBase implements IDBOperationsBase {
 	}
 	
 	/**
-	 * Deletes a MeasurementValues.
+	 * Deletes the given MeasurementValues.
 	 */
 	public void delete(final MeasurementValues entity) {
 		executeInTransaction(new ICommand() {

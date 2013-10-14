@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans
+	xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+    http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-3.0.xsd
+    http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.0.xsd
+    "
+>
+	<bean
+		id="dataSource"
+		class="org.apache.commons.dbcp.BasicDataSource"
+		destroy-method="close"
+	>
+		<property name="driverClassName">
+			<value>${jdbc.driver.className}</value>
+		</property>
+		<property name="url">
+			<value>${jdbc.url}</value>
+		</property>
+		<property name="username">
+			<value>${jdbc.username}</value>
+		</property>
+		<property name="password">
+			<value>${jdbc.password}</value>
+		</property>
+		<property
+			name="initialSize"
+			value="1"/>
+		<property
+			name="maxActive"
+			value="5"/>
+		<property
+			name="poolPreparedStatements"
+			value="true"/>
+		<property
+			name="maxOpenPreparedStatements"
+			value="10"/>
+	</bean>
+	<bean id="entityManagerFactory"
+		class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
+		<property name="dataSource" ref="dataSource" />
+		<property name="packagesToScan" value="de.peterspan.csv2db" />
+		<property name="jpaVendorAdapter">
+			<bean class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter" />
+		</property>
+		 <property name="jpaProperties">
+         <props>
+            <prop key="hibernate.connection.url">${jdbc.url}</prop>
+			<prop key="hibernate.connection.driver_class">${jdbc.driver.className}</prop>
+			<prop key="hibernate.connection.username">${jdbc.username}</prop>
+			<prop key="hibernate.connection.password">${jdbc.password}</prop>
+           
+            <prop key="hibernate.dialect">${jdbc.hibernate.dialect}</prop>
+         </props>
+      </property>
+	</bean>
+
+	<bean id="transactionManager" class="org.springframework.orm.jpa.JpaTransactionManager">
+		<property name="entityManagerFactory" ref="entityManagerFactory" />
+	</bean>
+	<!-- tells Spring to put transactional advice on any class
+		or method that has an @Transactional annotation on it -->
+	<tx:annotation-driven/>
+</beans>

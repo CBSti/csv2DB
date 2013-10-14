@@ -2,10 +2,10 @@ package de.peterspan.csv2db.domain.dao;
 
 import java.util.List;
 
-import org.hibernate.Criteria;
-import org.hibernate.Session;
-import org.hibernate.criterion.Disjunction;
-import org.hibernate.criterion.Restrictions;
+import javax.persistence.EntityManager;
+import javax.persistence.criteria.CriteriaBuilder;
+import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Root;
 
 import de.peterspan.csv2db.domain.entities.MeasurementValues;
 
@@ -63,55 +63,70 @@ public class MeasurementValuesDAO {
 	/**
 	 * Creates a MeasurementValues using all read-only and all non-null properties.
 	 */
-	public MeasurementValues create(Session session) {
+	public MeasurementValues create(EntityManager em) {
 		MeasurementValues newEntity = new MeasurementValues();
-		session.save(newEntity);
+		em.persist(newEntity);
 		return newEntity;
 	}
 	
 	/**
 	 * Returns the MeasurementValues with the given id.
 	 */
-	public MeasurementValues get(Session session, int id) {
-		MeasurementValues entity = (MeasurementValues) session.get(MeasurementValues.class, id);
+	public MeasurementValues get(EntityManager em, int id) {
+		MeasurementValues entity = (MeasurementValues) em.find(MeasurementValues.class, id);
 		return entity;
 	}
 	
 	/**
 	 * Returns all entities of type MeasurementValues.
 	 */
-	public List<MeasurementValues> getAll(Session session) {
-		Criteria criteria = session.createCriteria(MeasurementValues.class);
-		@SuppressWarnings("unchecked")
-		List<MeasurementValues> entities = (List<MeasurementValues>) criteria.list();
+	public List<MeasurementValues> getAll(EntityManager em) {
+		CriteriaQuery<MeasurementValues> query = buildGetAllQuery(em);
+		List<MeasurementValues> entities = em.createQuery(query).getResultList();
 		return entities;
+	}
+	
+	/**
+	 * Builds a query that fetches all entities of type MeasurementValues.
+	 */
+	public CriteriaQuery<MeasurementValues> buildGetAllQuery(EntityManager em) {
+		CriteriaBuilder builder = em.getCriteriaBuilder();
+		CriteriaQuery<MeasurementValues> query = builder.createQuery(MeasurementValues.class);
+		Root<MeasurementValues> root = query.from(MeasurementValues.class);
+		query.select(root);
+		return query;
 	}
 	
 	/**
 	 * Searches for entities of type MeasurementValues.
 	 */
-	public List<MeasurementValues> search(Session _session, String _searchString, int _maxResults) {
-		Criteria criteria = _session.createCriteria(MeasurementValues.class);
-		Disjunction disjunction = Restrictions.disjunction();
-		criteria = criteria.add(disjunction);
-		criteria = criteria.setMaxResults(_maxResults);
-		@SuppressWarnings("unchecked")
-		List<MeasurementValues> entities = (List<MeasurementValues>) criteria.list();
+	public List<MeasurementValues> search(EntityManager _em, String _searchString, int _maxResults) {
+		if (_searchString == null) {
+			throw new IllegalArgumentException("searchString must not be null.");
+		}
+		CriteriaBuilder builder = _em.getCriteriaBuilder();
+		CriteriaQuery<MeasurementValues> query = builder.createQuery(MeasurementValues.class);
+		// create disjunction of all string properties
+		List<MeasurementValues> entities = _em.createQuery(query).setMaxResults(_maxResults).getResultList();
 		return entities;
 	}
 	
 	/**
 	 * Deletes a MeasurementValues.
 	 */
-	public void delete(Session session, MeasurementValues entity) {
-		session.delete(entity);
+	public void delete(EntityManager em, MeasurementValues entity) {
+		em.remove(entity);
 	}
 	
 	/**
 	 * Counts the number of MeasurementValues entities.
 	 */
-	public int count(Session session) {
-		return ((Long) session.createQuery("select count(*) from MeasurementValues").uniqueResult()).intValue();
+	public int count(EntityManager em) {
+		Object first = em.createQuery("select count(*) from MeasurementValues").getResultList().get(0);
+		if (first instanceof Long) {
+			return ((Long) first).intValue();
+		}
+		throw new RuntimeException("Unexpected result for count query: " + first);
 	}
 		
 	private static String getField(Class<?> clazz, String fieldName) {

@@ -25,7 +25,7 @@ import de.peterspan.csv2db.converter.AbstractConverter;
 public class SurvivalRateConverter extends AbstractConverter {
 
 	@Override
-	public void readLine(String[] line, Session session) {
+	public void readLine(String[] line) {
 		// TODO Auto-generated method stub
 
 	}

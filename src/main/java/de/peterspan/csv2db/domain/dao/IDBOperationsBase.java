@@ -9,6 +9,8 @@ import de.peterspan.csv2db.domain.entities.MeasurementValues;
 // this class is generated. any change will be overridden.
 public interface IDBOperationsBase {
 	
+	public void flush();
+	
 	/**
 	 * Creates a new Location using all read-only and all non-null properties.
 	 */
@@ -35,7 +37,7 @@ public interface IDBOperationsBase {
 	public List<Location> searchLocations(String _searchString, int _maxResults);
 	
 	/**
-	 * Deletes a Location.
+	 * Deletes the given Location.
 	 */
 	public void delete(Location entity);
 	
@@ -85,17 +87,7 @@ public interface IDBOperationsBase {
 	public List<DataSet> searchDataSets(String _searchString, int _maxResults);
 	
 	/**
-	 * Searches for entities of type DataSet.
-	 */
-	public List<DataSet> searchDataSetWithLocation(final Location location, String _searchString, int _maxResults);
-	
-	/**
-	 * Searches for entities of type DataSet.
-	 */
-	public List<DataSet> searchDataSetWithMeasurementValues(final MeasurementValues measurementValues, String _searchString, int _maxResults);
-	
-	/**
-	 * Deletes a DataSet.
+	 * Deletes the given DataSet.
 	 */
 	public void delete(DataSet entity);
 	
@@ -135,7 +127,7 @@ public interface IDBOperationsBase {
 	public List<MeasurementValues> searchMeasurementValuess(String _searchString, int _maxResults);
 	
 	/**
-	 * Deletes a MeasurementValues.
+	 * Deletes the given MeasurementValues.
 	 */
 	public void delete(MeasurementValues entity);
 	
@@ -144,6 +136,22 @@ public interface IDBOperationsBase {
 	 */
 	public int countMeasurementValuess();
 	
-	
-	public void update(Object entity);
+	/**
+	 * Merge the properties of the given entity with the current 
+	 * transaction context.
+	 */
+	public void merge(Location entity);
+
+	/**
+	 * Merge the properties of the given entity with the current 
+	 * transaction context.
+	 */
+	public void merge(DataSet entity);
+
+	/**
+	 * Merge the properties of the given entity with the current 
+	 * transaction context.
+	 */
+	public void merge(MeasurementValues entity);
+
 }

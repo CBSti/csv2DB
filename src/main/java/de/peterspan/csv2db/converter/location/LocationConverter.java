@@ -21,9 +21,9 @@ package de.peterspan.csv2db.converter.location;
 import java.io.File;
 import java.util.List;
 
+import javax.persistence.EntityTransaction;
+
 import org.hibernate.HibernateException;
-import org.hibernate.Session;
-import org.hibernate.Transaction;
 import org.springframework.stereotype.Component;
 
 import de.peterspan.csv2db.converter.AbstractConverter;
@@ -40,20 +40,19 @@ public class LocationConverter extends AbstractConverter {
 		super(inputFile);
 	}
 
-	public void readLine(String[] line, Session session) {
+	public void readLine(String[] line) {
 		LocationDataLine datasetLine = new LocationDataLine(line);
 
 		Location loc = datasetLine.getLocation();
-		session.saveOrUpdate(loc);
+		entityManager.persist(loc);
 	}
 
 	@Override
 	protected Void doInBackground() throws Exception {
-		Session session = null;
-		Transaction tx = null;
+		EntityTransaction tx = null;
 		try {
-			session = sessionFactory.openSession();
-			tx = session.beginTransaction();
+			tx = entityManager.getTransaction();
+			tx.begin();
 			List<String[]> allLines = readFile();
 
 			double increment = 100.0 / allLines.size();
@@ -69,21 +68,18 @@ public class LocationConverter extends AbstractConverter {
 				if (line[0].equals("")) {
 					continue;
 				}
-				readLine(line, session);
+				readLine(line);
 
 			}
 
-			session.flush();
+			entityManager.flush();
 			tx.commit();
 		} catch (HibernateException he) {
 			if (tx != null) {
 				tx.rollback();
 			}
-		} finally {
-			if (session != null) {
-				session.close();
-			}
 		}
+		
 		return null;
 	}
 

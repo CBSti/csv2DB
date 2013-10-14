@@ -10,7 +10,7 @@ public class domainDAO extends domainDAOBase {
 		super(contextClass);
 	}
 	
-	public void handleException(Exception e, boolean retry) {
+	public void handleException(Throwable e, boolean retry) {
 		e.printStackTrace();
 	}
 }

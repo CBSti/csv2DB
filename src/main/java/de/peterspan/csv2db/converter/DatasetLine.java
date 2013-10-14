@@ -21,6 +21,9 @@ package de.peterspan.csv2db.converter;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
+
 import de.peterspan.csv2db.converter.Header.NotYetInitializedException;
 import de.peterspan.csv2db.domain.entities.DataSet;
 import de.peterspan.csv2db.domain.entities.Location;
@@ -29,6 +32,8 @@ import de.peterspan.csv2db.util.DateTimeParserHelper;
 
 public class DatasetLine extends AbstractDataLine {
 
+	private static final Log log = LogFactory.getLog(DatasetLine.class);
+	
 	/**
 	 * Standort Nr
 	 */
@@ -548,8 +553,7 @@ public class DatasetLine extends AbstractDataLine {
 					.get(measurement_date));
 			dataset.setAcquisitionDate(date);
 		} catch (IllegalArgumentException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			log.error("The given date " + dataValues.get(measurement_date) + " is invalid.", e);
 		}
 
 		dataset.setRemark(dataValues.get(remark));

@@ -1,9 +1,9 @@
 package de.peterspan.csv2db;
 
 import javax.annotation.Resource;
+import javax.persistence.EntityManagerFactory;
 import javax.sql.DataSource;
 
-import org.hibernate.SessionFactory;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,13 +27,12 @@ public class DatabaseTest {
 	LocationDAOImpl locationDao;
 	
 	@Resource
-	SessionFactory sessionFactory;
+	EntityManagerFactory entityManagerFactory;
 	
 	@Test
     public void testCreateData() {
 		System.out.println("Hello World");
 		System.out.println("LocationDAOImpl "+locationDao);
-		System.out.println("SessionFactory: "+sessionFactory);
 		System.out.println("App COntext "+applicationContext);
 		System.out.println("dataSource "+dataSource);
 		

@@ -16,6 +16,16 @@
 			</arguments>
 		</buildCommand>
 		<buildCommand>
+			<name>de.devboost.hedlpro.resource.hedl.builder</name>
+			<arguments>
+			</arguments>
+		</buildCommand>
+		<buildCommand>
+			<name>de.devboost.hedlpro.domino.builder</name>
+			<arguments>
+			</arguments>
+		</buildCommand>
+		<buildCommand>
 			<name>org.eclipse.m2e.core.maven2Builder</name>
 			<arguments>
 			</arguments>
@@ -25,5 +35,6 @@
 		<nature>org.eclipse.jdt.core.javanature</nature>
 		<nature>org.eclipse.m2e.core.maven2Nature</nature>
 		<nature>org.emftext.language.hedl.resource.hedl.nature</nature>
+		<nature>de.devboost.hedlpro.resource.hedl.nature</nature>
 	</natures>
 </projectDescription>

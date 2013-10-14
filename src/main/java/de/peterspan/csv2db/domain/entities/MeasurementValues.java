@@ -7,157 +7,143 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
-import org.hibernate.annotations.GenericGenerator;
-import org.hibernate.annotations.Parameter;
-
 @Entity
-@Table(name = "measurementvalues"
-)
+@Table(name = "measurementvalues")
 /*
  * This class is generated from the entity 'MeasurementValues' defined in the HEDL model.
  * Note: Any change made to this class will be overridden.
  */
 public class MeasurementValues {
 	
-	@GenericGenerator(name="MeasurementValuesIdGenerator", strategy="org.hibernate.id.MultipleHiLoPerTableGenerator",
-	  parameters = {
-	    @Parameter(name="table", value="IdentityGenerator"),
-	    @Parameter(name="primary_key_column", value="sequence_name"),
-	    @Parameter(name="primary_key_value", value="MeasurementValues"),
-	    @Parameter(name="value_column", value="next_hi_value"),
-	    @Parameter(name="primary_key_length", value="100"),
-	    @Parameter(name="max_lo", value="1000")
-	  }
-	)
 	@Id 
-	@GeneratedValue(strategy=GenerationType.TABLE, generator="MeasurementValuesIdGenerator")
+	@GeneratedValue(strategy=GenerationType.AUTO)
 	private int id;
 
-	@Column(name="numberofshoots")
+	@Column(name="numberofshoots", nullable=true)
 	private java.lang.Integer numberOfShoots;
 	
-	@Column(name="bhd_1")
+	@Column(name="bhd_1", nullable=true)
 	private java.lang.Double bhd_1;
 	
-	@Column(name="d_01_1")
+	@Column(name="d_01_1", nullable=true)
 	private java.lang.Double d_01_1;
 	
-	@Column(name="bhd_2")
+	@Column(name="bhd_2", nullable=true)
 	private java.lang.Double bhd_2;
 	
-	@Column(name="d_01_2")
+	@Column(name="d_01_2", nullable=true)
 	private java.lang.Double d_01_2;
 	
-	@Column(name="bhd_3")
+	@Column(name="bhd_3", nullable=true)
 	private java.lang.Double bhd_3;
 	
-	@Column(name="d_01_3")
+	@Column(name="d_01_3", nullable=true)
 	private java.lang.Double d_01_3;
 	
-	@Column(name="bhd_4")
+	@Column(name="bhd_4", nullable=true)
 	private java.lang.Double bhd_4;
 	
-	@Column(name="d_01_4")
+	@Column(name="d_01_4", nullable=true)
 	private java.lang.Double d_01_4;
 	
-	@Column(name="bhd_5")
+	@Column(name="bhd_5", nullable=true)
 	private java.lang.Double bhd_5;
 	
-	@Column(name="d_01_5")
+	@Column(name="d_01_5", nullable=true)
 	private java.lang.Double d_01_5;
 	
-	@Column(name="bhd_6")
+	@Column(name="bhd_6", nullable=true)
 	private java.lang.Double bhd_6;
 	
-	@Column(name="d_01_6")
+	@Column(name="d_01_6", nullable=true)
 	private java.lang.Double d_01_6;
 	
-	@Column(name="bhd_7")
+	@Column(name="bhd_7", nullable=true)
 	private java.lang.Double bhd_7;
 	
-	@Column(name="d_01_7")
+	@Column(name="d_01_7", nullable=true)
 	private java.lang.Double d_01_7;
 	
-	@Column(name="bhd_8")
+	@Column(name="bhd_8", nullable=true)
 	private java.lang.Double bhd_8;
 	
-	@Column(name="d_01_8")
+	@Column(name="d_01_8", nullable=true)
 	private java.lang.Double d_01_8;
 	
-	@Column(name="bhd_9")
+	@Column(name="bhd_9", nullable=true)
 	private java.lang.Double bhd_9;
 	
-	@Column(name="d_01_9")
+	@Column(name="d_01_9", nullable=true)
 	private java.lang.Double d_01_9;
 	
-	@Column(name="bhd_10")
+	@Column(name="bhd_10", nullable=true)
 	private java.lang.Double bhd_10;
 	
-	@Column(name="d_01_10")
+	@Column(name="d_01_10", nullable=true)
 	private java.lang.Double d_01_10;
 	
-	@Column(name="bhd_11")
+	@Column(name="bhd_11", nullable=true)
 	private java.lang.Double bhd_11;
 	
-	@Column(name="d_01_11")
+	@Column(name="d_01_11", nullable=true)
 	private java.lang.Double d_01_11;
 	
-	@Column(name="bhd_12")
+	@Column(name="bhd_12", nullable=true)
 	private java.lang.Double bhd_12;
 	
-	@Column(name="bhd_13")
+	@Column(name="bhd_13", nullable=true)
 	private java.lang.Double bhd_13;
 	
-	@Column(name="bhd_14")
+	@Column(name="bhd_14", nullable=true)
 	private java.lang.Double bhd_14;
 	
-	@Column(name="bhd_15")
+	@Column(name="bhd_15", nullable=true)
 	private java.lang.Double bhd_15;
 	
-	@Column(name="height")
+	@Column(name="height", nullable=true)
 	private java.lang.Double height;
 	
-	@Column(name="l_1")
+	@Column(name="l_1", nullable=true)
 	private java.lang.Double l_1;
 	
-	@Column(name="l_2")
+	@Column(name="l_2", nullable=true)
 	private java.lang.Double l_2;
 	
-	@Column(name="l_3")
+	@Column(name="l_3", nullable=true)
 	private java.lang.Double l_3;
 	
-	@Column(name="l_4")
+	@Column(name="l_4", nullable=true)
 	private java.lang.Double l_4;
 	
-	@Column(name="l_5")
+	@Column(name="l_5", nullable=true)
 	private java.lang.Double l_5;
 	
-	@Column(name="l_6")
+	@Column(name="l_6", nullable=true)
 	private java.lang.Double l_6;
 	
-	@Column(name="l_7")
+	@Column(name="l_7", nullable=true)
 	private java.lang.Double l_7;
 	
-	@Column(name="l_8")
+	@Column(name="l_8", nullable=true)
 	private java.lang.Double l_8;
 	
-	@Column(name="l_9")
+	@Column(name="l_9", nullable=true)
 	private java.lang.Double l_9;
 	
-	@Column(name="l_10")
+	@Column(name="l_10", nullable=true)
 	private java.lang.Double l_10;
 	
-	@Column(name="l_11")
+	@Column(name="l_11", nullable=true)
 	private java.lang.Double l_11;
 	
-	@Column(name="l_12")
+	@Column(name="l_12", nullable=true)
 	private java.lang.Double l_12;
 	
-	@Column(name="l_13")
+	@Column(name="l_13", nullable=true)
 	private java.lang.Double l_13;
 	
 	/**
-	 * Default constructor. Only used by Hibernate.
+	 * Default constructor. Only used by JPA.
 	 */
 	public MeasurementValues() {
 		super();
@@ -754,4 +740,29 @@ public class MeasurementValues {
 		this.l_13 = newValue;
 	}
 	
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + getId();
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj) {
+			return true;
+		}
+		if (obj == null) {
+			return false;
+		}
+		if (getClass() != obj.getClass()) {
+			return false;
+		}
+		MeasurementValues other = (MeasurementValues) obj;
+		if (getId() != other.getId()) {
+			return false;
+		}
+		return true;
+	}
 }

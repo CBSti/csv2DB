@@ -21,13 +21,19 @@ package de.peterspan.csv2db.converter;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
+
 public abstract class AbstractDataLine {
 
+	private static final Log log = LogFactory.getLog(AbstractDataLine.class);
+	
 	public static Double string2double(String value) {
 		try {
 			value = value.replace(",", ".");
 			return Double.parseDouble(value);
 		} catch (NumberFormatException nfe) {
+			log.error("Could not convert string " + value + " to double.", nfe);
 			return null;
 		}
 	}
@@ -36,6 +42,7 @@ public abstract class AbstractDataLine {
 		try {
 			return Integer.parseInt(value);
 		} catch (NumberFormatException nfe) {
+			log.error("Could not convert string " + value + " to integer.", nfe);
 			return null;
 		}
 	}

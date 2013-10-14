@@ -7,30 +7,16 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
-import org.hibernate.annotations.GenericGenerator;
-import org.hibernate.annotations.Parameter;
-
 @Entity
-@Table(name = "location"
-)
+@Table(name = "location")
 /*
  * This class is generated from the entity 'Location' defined in the HEDL model.
  * Note: Any change made to this class will be overridden.
  */
 public class Location {
 	
-	@GenericGenerator(name="LocationIdGenerator", strategy="org.hibernate.id.MultipleHiLoPerTableGenerator",
-	  parameters = {
-	    @Parameter(name="table", value="IdentityGenerator"),
-	    @Parameter(name="primary_key_column", value="sequence_name"),
-	    @Parameter(name="primary_key_value", value="Location"),
-	    @Parameter(name="value_column", value="next_hi_value"),
-	    @Parameter(name="primary_key_length", value="100"),
-	    @Parameter(name="max_lo", value="1000")
-	  }
-	)
 	@Id 
-	@GeneratedValue(strategy=GenerationType.TABLE, generator="LocationIdGenerator")
+	@GeneratedValue(strategy=GenerationType.AUTO)
 	private int id;
 
 	@Column(name="longitude")
@@ -52,7 +38,7 @@ public class Location {
 	private java.lang.String workPackage;
 	
 	/**
-	 * Default constructor. Only used by Hibernate.
+	 * Default constructor. Only used by JPA.
 	 */
 	public Location() {
 		super();
@@ -172,4 +158,29 @@ public class Location {
 		this.workPackage = newValue;
 	}
 	
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + getId();
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj) {
+			return true;
+		}
+		if (obj == null) {
+			return false;
+		}
+		if (getClass() != obj.getClass()) {
+			return false;
+		}
+		Location other = (Location) obj;
+		if (getId() != other.getId()) {
+			return false;
+		}
+		return true;
+	}
 }
