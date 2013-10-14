@@ -15,7 +15,7 @@ Acknowledgment
 ==============
 
 * [Plant Evaluation Tool](http://code.google.com/p/plant-evaluation/)
-* DevBoost GmbH and Mirko Seifert for providing a HEDL license
+* [DevBoost GmbH](http://www.devboost.de/de/) and [Mirko Seifert](http://www.devboost.de/de/Company#Team) for providing a HEDL license
 
 License
 ========
